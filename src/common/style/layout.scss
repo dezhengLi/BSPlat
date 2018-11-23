@@ -1,0 +1,78 @@
+
+$sidebar-width: 180px;
+
+//sidebar
+$menuBg:#304156;
+$subMenuBg:#1f2d3d;
+$menuHover:#001528;
+
+.c-app--wrapper {
+  display: flex;
+}
+
+.c-app--container {
+  flex: 1;
+  position: relative;
+  min-height: 100%;
+  transition: all .3s;
+}
+
+.c-app--sidebar {
+  position: relative;
+  z-index: 1000;
+  height: 100vh;
+  font-size: 0;
+  transition: all .3s;
+  overflow: hidden;
+  background: rgb(48, 65, 86);
+  transition: all .3s;
+  .nest-menu .el-submenu>.el-submenu__title,
+  .el-submenu {
+    background-color: $subMenuBg !important;
+    &:hover {
+      background-color: $menuHover !important;
+    }
+  }
+  svg {
+    margin-right: 10px;
+  }
+  .el-menu {
+    border: none;
+    // overflow: hidden;
+  }
+}
+
+.el-menu--vertical {
+  svg {
+    margin-right: 10px;
+  }
+}
+
+.clearMg {
+  margin: 0;
+}
+
+
+/* Common Popup Style */
+
+.c-common--popup {
+  &.column--popup {
+    .el-form {
+      flex-flow: column wrap;
+      margin-left: 20px;
+      &-item {
+        flex: 1;
+      }
+    }
+  }
+
+  .el-form {
+    display: flex;
+    flex-flow: row wrap;
+
+    &-item {
+      margin-right: 0;
+      flex: 50%;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+@import "./variable.scss";
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+@mixin querybox {
+  margin: $box-margin;
+  padding: $box-padding;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+}

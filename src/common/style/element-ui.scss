@@ -1,0 +1,18 @@
+.c-tablequery--container {
+  .el-form-item {
+    margin-bottom: 0;
+  }
+}
+.el-loading-mask.is-fullscreen {
+  z-index: 2222 !important;
+}
+
+.el-form {
+  .el- {
+    &textarea__inner,
+    &input__inner {
+      width: 220px;
+    }
+  }
+
+}
