@@ -6,8 +6,9 @@
     </table-content>
 
   <el-dialog title="渠道余额查询" :visible.sync="dialogTableVisible" width="30%">
+              <el-button @click="Export" class="el-icon-download" type="success">导出</el-button>
             <el-table
-                :data="ShowMessagedata"
+                :data="popupTabledata"
                 style="width: 100%"
                 height="500px">
                 <el-table-column v-for="(item,indexs) in info" :key="indexs"
@@ -18,7 +19,6 @@
             </el-table>
              <div slot="footer" class="dialog-footer">
                  <el-button @click="dialogTableVisible = false">关闭</el-button>
-
              </div>
    </el-dialog>
 
@@ -30,7 +30,8 @@
   import requestMixin from 'common/mixins/requestMixin'
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
-  import {getPassInfomanage, alterPassInfo} from 'api/passInfo-manage'
+  import {getPassInfomanage, alterPassInfo, balancePassInfo} from 'api/passInfo-manage'
+  import { ERR_OK } from '../../common/config/api.config'
 
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
@@ -54,7 +55,8 @@
             name: 'AvailableBalance',
             label: '可用余额'
             }
-         ]
+         ],
+         popupTabledata: []
       }
     },
     created() {
@@ -94,8 +96,17 @@
           }
         })
       },
-      balance() {
+     async balance() {
          this.dialogTableVisible = true
+         console.log(this.activeData.CusBankID)
+         const {data, msg, code} = await balancePassInfo(this.activeData)
+         this._$queryMessage({code, msg})
+         if (code === ERR_OK) {
+            // 导出表格功能没完成,还有返回的数据属性不知道popupTabledata
+         }
+      },
+      Export() {
+
       },
       _initData() {
         this.queryTitle = ['CusBankID']

@@ -30,3 +30,11 @@ export const alterPassInfo = function({CusBankID, CusBankType, CusBankName, CusB
     }
     return reqWrap(rqParams)
 }
+
+export const balancePassInfo = function({CusBankID}) {
+    const rqParams = {
+        FunCode: 65213,
+        CusBankID
+    }
+    return reqWrap(rqParams)
+}
