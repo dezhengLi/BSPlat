@@ -9,7 +9,7 @@ export const getcurrentbalance = function({StoreSerial}) {
     return reqWrap(rqParams)
 }
 
-export const getsubcurrentbalance = function({StoreSerial,PageID}) {
+export const getsubcurrentbalance = function({StoreSerial, PageID}) {
     const rqParams = {
         FunCode: 65049,
         PageSiz: 60,

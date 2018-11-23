@@ -11,7 +11,7 @@
   import requestMixin from 'common/mixins/requestMixin'
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
-  import {getpaymentmanage, addpayment,getKey,auditpayment} from 'api/payment-manage'
+  import {getpaymentmanage, addpayment, getKey, auditpayment} from 'api/payment-manage'
   import {strEnc} from '../../common/config/crypto.config.js'
   let Base64 = require('js-base64').Base64
 
@@ -38,7 +38,7 @@
     methods: {
       // 新增
       add() {
-        const addFiled = ['BankAccountName', 'BankID', 'BankAccountNo', 'Province', 'AccountProp', 'City', 'WithdrawTel','WithdrawBranchBankName','CardType','SubBranchBankName','CardNum','SubBranchBankID','MerchantID','AvailableBalance','Amt','PayPWD','Summary']
+        const addFiled = ['BankAccountName', 'BankID', 'BankAccountNo', 'Province', 'AccountProp', 'City', 'WithdrawTel', 'WithdrawBranchBankName', 'CardType', 'SubBranchBankName', 'CardNum', 'SubBranchBankID', 'MerchantID', 'AvailableBalance', 'Amt', 'PayPWD', 'Summary']
         // 全局引入$commonPopup
           getKey().then((res) => {
           this.getkey = Base64.decode(res.data.DesKey)
@@ -50,11 +50,11 @@
           submitFc: (params, p) => {
             params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial,
                                            OrderID: this.$store.state.user + new Date().getTime(),
-                                           MachineIP:returnCitySN.cip,
-                                           MerchantID:this.$store.state.user})
+                                           MachineIP: returnCitySN.cip,
+                                           MerchantID: this.$store.state.user})
                                                        // 加密
            params.PayPWD = strEnc(params.PayPWD, this.getkey)
-           console.log(typeof(params.Amt))
+           console.log(typeof (params.Amt))
             console.log(params)
             console.log(p)
             this.popupHttpFc(params, p, addpayment)
@@ -72,7 +72,7 @@
         titleField: ['AuditStatus', 'PayAuditPwd', 'Remark'],
         submitFc: (params, p) => {
           // this.activeData选定的全部内容
-           
+
            params = Object.assign({}, {OriPlatSerial: this.OriPlatSerial}, this.activeData, params)
             // 加密
            params.PayAuditPwd = strEnc(params.PayAuditPwd, this.getkey)
@@ -82,9 +82,9 @@
       })
     },
       _initData() {
-        this.queryTitle = [  'StartTime', 'EndTime','AuditStatus','StoreSerial', 'OrderID']
+        this.queryTitle = [ 'StartTime', 'EndTime', 'AuditStatus', 'StoreSerial', 'OrderID']
         this.tableTitle = ['ApplicationDate', 'OrderID', 'PlatSerial', 'Amount', 'StoreSerial', 'StoreName', 'BankAccountNo', 'BankAccountName', 'ApplicationCode', 'AuditStatus', 'ExecuteType']
-        this.detailFieldName = ['ApplicationDate', 'OrderID','PlatSerial', 'Amount', 'StoreSerial', 'StoreName', 'BigMerchantID', 'BigMerchantName', 'BankAccountNo', 'BankAccountName','BankID', 'ApplicationCode', 'OperatorCode', 'AuditStatus', 'ExecuteType', 'ConfirmDate', 'ConfirmOperatorCode', 'AuditRemark']
+        this.detailFieldName = ['ApplicationDate', 'OrderID', 'PlatSerial', 'Amount', 'StoreSerial', 'StoreName', 'BigMerchantID', 'BigMerchantName', 'BankAccountNo', 'BankAccountName', 'BankID', 'ApplicationCode', 'OperatorCode', 'AuditStatus', 'ExecuteType', 'ConfirmDate', 'ConfirmOperatorCode', 'AuditRemark']
       }
     }
   }

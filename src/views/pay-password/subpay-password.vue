@@ -12,44 +12,42 @@
             </el-form-item>
 
             <el-form-item>
-                <el-button type="primary" @click="submitForm('updatepass')">提交</el-button>               
+                <el-button type="primary" @click="submitForm('updatepass')">提交</el-button>
             </el-form-item>
             </el-form>
-      
 
 </template>
 <script>
- 
+
 export default {
      data() {
       var validateoldPass = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请输入密码'));
+          callback(new Error('请输入密码'))
         } else {
-          
-          callback();
+          callback()
         }
-      };
- 
+      }
+
       var validatePass = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请输入密码'));
+          callback(new Error('请输入密码'))
         } else {
           if (this.updatepass.checkPass !== '') {
-            this.$refs.updatepass.validateField('checkPass');
+            this.$refs.updatepass.validateField('checkPass')
           }
-          callback();
+          callback()
         }
-      };
+      }
       var validatePass2 = (rule, value, callback) => {
         if (value === '') {
-          callback(new Error('请再次输入密码'));
+          callback(new Error('请再次输入密码'))
         } else if (value !== this.updatepass.pass) {
-          callback(new Error('两次输入密码不一致!'));
+          callback(new Error('两次输入密码不一致!'))
         } else {
-          callback();
+          callback()
         }
-      };
+      }
       return {
         updatepass: {
           pass: '',
@@ -59,18 +57,18 @@ export default {
         rules2: {
           pass: [
             { validator: validatePass, trigger: 'blur' },
-            { min: 6, max:16, message: '支付密码由6—16个数字组成', trigger: 'blur' }
+            { min: 6, max: 16, message: '支付密码由6—16个数字组成', trigger: 'blur' }
           ],
           checkPass: [
             { validator: validatePass2, trigger: 'blur' },
-            { min: 6, max:16, message: '支付密码由6—16个数字组成', trigger: 'blur' }
+            { min: 6, max: 16, message: '支付密码由6—16个数字组成', trigger: 'blur' }
           ],
           oldpass: [
             { validator: validateoldPass, trigger: 'blur' },
-            { min: 6, max:16, message: '支付密码由6—16个数字组成', trigger: 'blur' }
+            { min: 6, max: 16, message: '支付密码由6—16个数字组成', trigger: 'blur' }
           ]
         }
-      };
+      }
     },
     methods: {
       submitForm(updatepass) {
@@ -78,15 +76,13 @@ export default {
               console.log(valid)
               if (valid) {
                   this.$emit('Updatepass', this.updatepass)
-          
             } else {
-                console.log('error submit!!');
-                return false;
+                console.log('error submit!!')
+                return false
               }
-            });
-        
+            })
        }
-     
+
     }
 }
 </script>
@@ -105,8 +101,5 @@ export default {
           margin-top:100px;
       }
   }
-  
-
 
 </style>
-

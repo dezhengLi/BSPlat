@@ -1,11 +1,11 @@
 import { reqWrap } from './utils'
 import { ParseTime } from 'common/js/utils'
 
-export const getorderflow = function({CusBankID,MerchantName,StoreSerial, StartTime, EndTime,PayType,ExecuteType,ExecuteStatus}) {
+export const getorderflow = function({CusBankID, MerchantName, StoreSerial, StartTime, EndTime, PayType, ExecuteType, ExecuteStatus}) {
   const rqParams = {
     FunCode: 65059,
     PageSize: 60,
-    ExecuteStatus:ExecuteStatus===""?-1:ExecuteStatus,
+    ExecuteStatus: ExecuteStatus === '' ? -1 : ExecuteStatus,
     CusBankID,
     MerchantName,
     StoreSerial,
@@ -21,7 +21,7 @@ export const orderflowSync = function({PlatSerial}) {
     const rqParams = {
       FunCode: 65131,
       PlatSerial
-  
+
     }
     return reqWrap(rqParams)
   }
@@ -30,18 +30,18 @@ export const orderflowSync = function({PlatSerial}) {
     const rqParams = {
       FunCode: 65133,
       PlatSerial
-  
+
     }
     return reqWrap(rqParams)
   }
 
-  export const paymentOrderflow = function ({StoreSerial,OrderID,PlatSerial,ReexchangeRemark,PayAuditPwd,OriPlatSerial,ExecuteType,ExecuteStatus}) {
+  export const paymentOrderflow = function ({StoreSerial, OrderID, PlatSerial, ReexchangeRemark, PayAuditPwd, OriPlatSerial, ExecuteType, ExecuteStatus}) {
     const rqParams = {
       FunCode: 65165,
-      MerchantID:StoreSerial,
+      MerchantID: StoreSerial,
       OrderID,
       PlatSerial,
-      Remark:ReexchangeRemark,
+      Remark: ReexchangeRemark,
       PayAuditPwd,
       OriPlatSerial,
       ExecuteType,
@@ -50,14 +50,13 @@ export const orderflowSync = function({PlatSerial}) {
     return reqWrap(rqParams)
   }
 
-
-  export const refundOrderflow = function ({StoreSerial,OrderID,PlatSerial,RefundRemark,PayAuditPwd,OriPlatSerial,ExecuteType,ExecuteStatus}) {
+  export const refundOrderflow = function ({StoreSerial, OrderID, PlatSerial, RefundRemark, PayAuditPwd, OriPlatSerial, ExecuteType, ExecuteStatus}) {
     const rqParams = {
       FunCode: 65193,
-      MerchantID:StoreSerial,
+      MerchantID: StoreSerial,
       OrderID,
       PlatSerial,
-      Remark:RefundRemark,
+      Remark: RefundRemark,
       PayAuditPwd,
       OriPlatSerial,
       ExecuteType,
@@ -69,8 +68,8 @@ export const orderflowSync = function({PlatSerial}) {
   export const TraceOrderflow = function({PlatSerial}) {
     const rqParams = {
       FunCode: 65187,
-      OrderID:PlatSerial
-  
+      OrderID: PlatSerial
+
     }
     return reqWrap(rqParams)
   }

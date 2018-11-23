@@ -6,11 +6,11 @@ export default {
       created () {
       this._getMerchantInfo()
   },
-    methods:{
-        async _getMerchantInfo(){
+    methods: {
+        async _getMerchantInfo() {
             this.$commonPopup({
 
-                titleField: ['AuditStatus', 'TransferMethod', 'BankSerial', 'Remark'],
+                titleField: ['AuditStatus', 'TransferMethod', 'BankSerial', 'Remark']
             })
         }
     }

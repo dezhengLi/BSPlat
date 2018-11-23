@@ -16,16 +16,16 @@
 
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
-       data:function(){
-        return{
-          sumData:[]
+       data: function() {
+        return {
+          sumData: []
         }
     },
     created() {
       this.historyQuery = {}
-      this._initData()  
+      this._initData()
       // 设置一个响应数据data里的一个属性
-      this.FunKey = ['HisBalanceArray','SumHisBalanceArray']
+      this.FunKey = ['HisBalanceArray', 'SumHisBalanceArray']
       this.requestFunc = gethistorybalance
       this.navData = [
           {
@@ -39,17 +39,12 @@
       //    SumCurrentBalance:"127,007,724.14"
       //   }
       // ]
-
     },
     methods: {
-        
-       
- 
 
       _initData() {
-        this.queryTitle = ['StoreSerial','StartTime', 'EndTime']
-        this.tableTitle = ['MerchantID', 'MerchantName', 'MerchantType','TradeDate','Balance', 'InAmount','RechargeAmount','OutAmount','WithdrawAmount','CurrentBalance','CommissionInCome','UpdateTime']
-        
+        this.queryTitle = ['StoreSerial', 'StartTime', 'EndTime']
+        this.tableTitle = ['MerchantID', 'MerchantName', 'MerchantType', 'TradeDate', 'Balance', 'InAmount', 'RechargeAmount', 'OutAmount', 'WithdrawAmount', 'CurrentBalance', 'CommissionInCome', 'UpdateTime']
       }
     }
   }

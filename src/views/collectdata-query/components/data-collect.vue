@@ -15,8 +15,8 @@
 </template>
 <script>
 export default {
-    data(){
-            return{
+    data() {
+            return {
                 collectData: {
                     InSuccessNums: {
                         icon: 'InSuccessNums',
@@ -124,10 +124,10 @@ export default {
 
                     },
                     empty2: {
- 
+
                     },
                     empty3: {
-        
+
                     },
                     empty4: {
 
@@ -135,19 +135,19 @@ export default {
             }
         }
     },
-    props:{
-        CollectVal:{
-            type:Object,
+    props: {
+        CollectVal: {
+            type: Object,
             required: true
         }
-    },    
+    },
     filters: {
       modifyVal (val) {
         return (!isNaN(val) && (+val).toFixed(2)) || val
       }
     },
-    watch:{
-        CollectVal(newdata){
+    watch: {
+        CollectVal(newdata) {
             Object.keys(this.collectData).forEach((key) => {
                 this.collectData[key].val = newdata[key] || newdata[this.collectData[key].name]
             })
@@ -178,9 +178,9 @@ export default {
                    font-size: $font-size-medium;
                }
                .text{
-                  font-size: $font-size-medium; 
+                  font-size: $font-size-medium;
                   font-weight: bold;
-                  
+
                }
            }
 

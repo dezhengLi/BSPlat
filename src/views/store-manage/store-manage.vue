@@ -12,7 +12,7 @@
   import requestMixin from 'common/mixins/requestMixin'
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
-  import {getStoreManage,updatePWMerchant,registerStore, modifyStore, resetPwd, auditStore, activeStore, sendOpenEmail} from 'api/store-manage'
+  import {getStoreManage, updatePWMerchant, registerStore, modifyStore, resetPwd, auditStore, activeStore, sendOpenEmail} from 'api/store-manage'
   import {getKey} from 'api/utils.js'
   import {strEnc} from '../../common/config/crypto.config.js'
   let Base64 = require('js-base64').Base64
@@ -120,12 +120,12 @@
         this.$commonPopup({
           titleField: ['OldLoginPwd', 'NewLoginPwd', 'ConfirmPwd'],
           submitFc: (params, p) => {
-              params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial},this.activeData)
-              params.OldLoginPwd=strEnc(params.OldLoginPwd, this.getkey)
-              params.NewLoginPwd=strEnc(params.NewLoginPwd, this.getkey)
-              params.ConfirmPwd=strEnc(params.ConfirmPwd, this.getkey)
-              
-              this.popupHttpFc(params, p,updatePWMerchant)
+              params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial}, this.activeData)
+              params.OldLoginPwd = strEnc(params.OldLoginPwd, this.getkey)
+              params.NewLoginPwd = strEnc(params.NewLoginPwd, this.getkey)
+              params.ConfirmPwd = strEnc(params.ConfirmPwd, this.getkey)
+
+              this.popupHttpFc(params, p, updatePWMerchant)
           }
         })
       },

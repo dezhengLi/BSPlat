@@ -78,7 +78,7 @@
           })
         }
 
-        this.resolve(activeData)        
+        this.resolve(activeData)
         this.isShowPopup = false
       },
       close () {

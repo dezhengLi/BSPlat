@@ -83,7 +83,7 @@ export default {
           ? val
           : val !== ''
             ? val
-            : optionsKey[0] 
+            : optionsKey[0]
           val = !isNaN(val) ? val.toString() : val
           // result = (
           //   <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val}>

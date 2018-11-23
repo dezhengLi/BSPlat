@@ -16,7 +16,7 @@
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
   import {getcollectdata} from 'api/collectdata-query'
-  import  DataCollect from './components/data-collect.vue' 
+  import DataCollect from './components/data-collect.vue'
   import { ERR_OK } from '../../common/config/api.config'
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
@@ -25,35 +25,35 @@
       this.historyQuery = {}
       this._initData()
       },
-     data(){
-       return{
-         collect:{}
+     data() {
+       return {
+         collect: {}
        }
      },
 
      methods: {
-          
+
         async getCollectData (params) {
             this.setGlobalLoading(true)
             const {code, data, msg} = await getcollectdata(params)
             this.setGlobalLoading(false)
             this._$queryMessage({code, msg})
             if (code === ERR_OK) {
-              this.collect=data
+              this.collect = data
               console.log(this.collect)
             }
           },
-            
+
             ...mapMutations({
                 setGlobalLoading: types.SET_GLOBAL_LOADING
               }),
-           
+
             _initData() {
-              this.queryTitle = ['StoreSerial', 'StartTime', 'EndTime', 'CusBankID','PayType','ExecuteType','CurrCode']
+              this.queryTitle = ['StoreSerial', 'StartTime', 'EndTime', 'CusBankID', 'PayType', 'ExecuteType', 'CurrCode']
               }
       }
   }
- 
+
 </script>
 <style lang="scss" scoped>
  .warning{
@@ -69,6 +69,3 @@
    }
  }
 </style>
-
-   
-

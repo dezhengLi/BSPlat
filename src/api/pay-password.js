@@ -1,12 +1,12 @@
 import { reqWrap } from './utils'
 
-export const updatePassWD = function({pass,checkPass,oldpass,OriPlatSerial}) {
+export const updatePassWD = function({pass, checkPass, oldpass, OriPlatSerial}) {
     const rqParams = {
       FunCode: 65151,
       OriPlatSerial,
-      OldPassword:oldpass,
-      NewPassword:pass,
-      ConfirmPwd:checkPass
+      OldPassword: oldpass,
+      NewPassword: pass,
+      ConfirmPwd: checkPass
     }
     return reqWrap(rqParams)
   }
