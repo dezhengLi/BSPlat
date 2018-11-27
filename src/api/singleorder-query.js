@@ -1,5 +1,6 @@
 import { reqWrap } from './utils'
 
+
 export const getsingleorder = function({PlatOrderID, ThirdSerial, OrderID, PlatSerial}) {
   const rqParams = {
     FunCode: 65061,
@@ -13,11 +14,12 @@ export const getsingleorder = function({PlatOrderID, ThirdSerial, OrderID, PlatS
   return reqWrap(rqParams)
 }
 
+
 export const OrderStatusSync = function({PlatSerial}) {
     const rqParams = {
       FunCode: 65131,
       PlatSerial
-
+  
     }
     return reqWrap(rqParams)
   }
@@ -26,18 +28,19 @@ export const OrderStatusSync = function({PlatSerial}) {
     const rqParams = {
       FunCode: 65133,
       PlatSerial
-
+  
     }
     return reqWrap(rqParams)
   }
 
-  export const paymentSingleorder = function ({StoreSerial, OrderID, PlatSerial, ReexchangeRemark, PayAuditPwd, OriPlatSerial, ExecuteType, ExecuteStatus}) {
+
+  export const paymentSingleorder = function ({StoreSerial,OrderID,PlatSerial,ReexchangeRemark,PayAuditPwd,OriPlatSerial,ExecuteType,ExecuteStatus}) {
     const rqParams = {
       FunCode: 65165,
-      MerchantID: StoreSerial,
+      MerchantID:StoreSerial,
       OrderID,
       PlatSerial,
-      Remark: ReexchangeRemark,
+      Remark:ReexchangeRemark,
       PayAuditPwd,
       OriPlatSerial,
       ExecuteType,
@@ -46,13 +49,13 @@ export const OrderStatusSync = function({PlatSerial}) {
     return reqWrap(rqParams)
   }
 
-  export const refundSingleorder = function ({StoreSerial, OrderID, PlatSerial, RefundRemark, PayAuditPwd, OriPlatSerial, ExecuteType, ExecuteStatus}) {
+  export const refundSingleorder = function ({StoreSerial,OrderID,PlatSerial,RefundRemark,PayAuditPwd,OriPlatSerial,ExecuteType,ExecuteStatus}) {
     const rqParams = {
       FunCode: 65193,
-      MerchantID: StoreSerial,
+      MerchantID:StoreSerial,
       OrderID,
       PlatSerial,
-      Remark: RefundRemark,
+      Remark:RefundRemark,
       PayAuditPwd,
       OriPlatSerial,
       ExecuteType,
@@ -60,12 +63,14 @@ export const OrderStatusSync = function({PlatSerial}) {
     }
     return reqWrap(rqParams)
   }
+
+  
 
   export const TraceSingleorder = function({PlatSerial}) {
     const rqParams = {
       FunCode: 65187,
-      OrderID: PlatSerial
-
+      OrderID:PlatSerial
+  
     }
     return reqWrap(rqParams)
   }

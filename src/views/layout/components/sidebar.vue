@@ -15,6 +15,7 @@ export default {
     ...mapGetters(['sidebar', 'menu'])
   },
   methods: {
+
     renderSvg (icon) {
       return icon ? (
         <svg-icon iconClass={ icon } class="sidebarSvg" />
@@ -32,14 +33,33 @@ export default {
         </el-submenu>
       )
     },
-    renderItem (item) {
-      const { path, icon, label } = item
-      return (
-        <el-menu-item index={path}>
-          { this.renderSvg(icon) }
-          <span>{ label }</span>
-        </el-menu-item>
-      )
+    // renderItem (item) {
+    //   const { path, icon, label } = item
+    //   return (
+    //     <el-menu-item index={path}>
+    //       { this.renderSvg(icon) }
+    //       <span>{ label }</span>
+    //     </el-menu-item>
+    //   )
+    // },
+        renderItem (item) {
+      const { path, icon, label,onClick } = item
+      if(item.onClick){
+          return (
+          <el-menu-item onClick={item.onClick}>
+            { this.renderSvg(icon) }
+            <span>{ label }</span>
+          </el-menu-item>
+        )
+      }else{
+              return (
+            <el-menu-item index={path}>
+              { this.renderSvg(icon) }
+              <span>{ label }</span>
+            </el-menu-item>
+          )
+      }
+      
     },
     renderSidebar (item) {
       if (item.children) {

@@ -172,16 +172,20 @@ export const deepCopy = function (obj) {
 }
 
 // 获取时间hh：mm：ss
-export const retTime = function(obj) {
+export const retTime=function(obj){
   let hh = obj.getHours() >= 10 ? obj.getHours() : '0' + obj.getHours()
   let mm = obj.getMinutes() >= 10 ? obj.getMinutes() : '0' + obj.getMinutes()
   let ss = obj.getSeconds() >= 10 ? obj.getSeconds() : '0' + obj.getSeconds()
   return hh + ':' + mm + ':' + ss
 }
 
-export const retdayTime = function (obj) {
-  let YY = obj.getFullYear()
-  let MM = obj.getMonth() + 1 >= 10 ? obj.getMonth() + 1 : '0' + (obj.getMonth() + 1)
-  let DD = obj.getDate() >= 10 ? obj.getDate() : '0' + obj.getDate()
-  return YY + '-' + MM + '-' + DD
+
+
+export const retdayTime=function (obj) {
+  let YY = obj.getFullYear() 
+  let MM=obj.getMonth() + 1>=10? obj.getMonth()+ 1: '0'+(obj.getMonth()+ 1)
+  let DD=obj.getDate() >=10? obj.getDate(): '0'+obj.getDate()
+  return YY + '-' +MM+ '-' +DD
 }
+
+

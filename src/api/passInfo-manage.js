@@ -9,7 +9,7 @@ export const getPassInfomanage = function({CusBankID}) {
     return reqWrap(rqParams)
 }
 
-export const alterPassInfo = function({CusBankID, CusBankType, CusBankName, CusBankShortName, CurrCode, PlatRechargeAccNo, PlatRechargeAccName, RechargeIDType, RechargeIDCard, PlatWithDrawAccNo, PlatWithDrawAccName, WithDrawIDType, WithDrawIDCard, PlatPayAccNo, PlatPayAccName}) {
+export const alterPassInfo = function({CusBankID,CusBankType,CusBankName,CusBankShortName,CurrCode,PlatRechargeAccNo,PlatRechargeAccName,RechargeIDType,RechargeIDCard,PlatWithDrawAccNo,PlatWithDrawAccName,WithDrawIDType,WithDrawIDCard,PlatPayAccNo,PlatPayAccName}) {
     const rqParams = {
         FunCode: 65097,
         CusBankID,

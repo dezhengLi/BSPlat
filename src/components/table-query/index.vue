@@ -37,12 +37,14 @@
       // 请求的数据
       _initQueryData () {
         let propertyInitData = Object.assign({}, INPUT_INITDATA, this.initData)
+        console.log(propertyInitData)
         // c代表queryTitle
         this.queryData = Object.assign({}, this.queryTitle.reduce((p, c) => (
           Object.assign({}, p, {
             [c]: propertyInitData[c] || ''
           })
         ), {}))
+        console.log(this.queryData)
       },
       // 时间
       _initPickerOptions () {
@@ -64,14 +66,16 @@
       },
       _changeVal (val, key) {
         this.queryData[key] = val
+        
       }
     },
     render () {
+
       const { pr, queryTitle, queryData, pickerOptions } = this
       return (
         <div class="c-tablequery--container">
           <el-form style={{ paddingRight: pr }} label-width="120px" class="form-box">
-            {this._renderInputCtr(queryTitle, queryData, pickerOptions, true)}
+            {this._renderInputCtr(queryTitle, queryData, pickerOptions,true)}
             <el-form-item label-width="50px">
               <el-button onClick={this.emitQuery}>查询</el-button>
             </el-form-item>

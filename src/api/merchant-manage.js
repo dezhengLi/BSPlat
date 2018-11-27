@@ -107,14 +107,15 @@ export const cancelMerchant = function ({MerchantID}) {
   return reqWrap(rqParams)
 }
 
-export const updatePWMerchant = function ({MerchantID, StaffName, ConfirmPwd, NewLoginPwd, OldLoginPwd, OriPlatSerial}) {
+
+export const updatePWMerchant = function ({MerchantID,StaffName,ConfirmPwd,NewLoginPwd,OldLoginPwd,OriPlatSerial}) {
   const rqParams = {
     FunCode: 65127,
     MerchantID,
     StaffName,
     ConfirmPwd,
-    NewPayPwd: NewLoginPwd,
-    PayPWD: OldLoginPwd,
+    NewPayPwd:NewLoginPwd,
+    PayPWD:OldLoginPwd,
     OriPlatSerial
   }
   return reqWrap(rqParams)

@@ -33,10 +33,10 @@
 </template>
 <script>
       export default {
-            data: function() {
-                return {
-                  sumarr: [],
-                  getsumData: this.sumData
+            data:function(){
+                return{
+                  sumarr:[],
+                  getsumData:this.sumData
                 }
             },
             props: {
@@ -64,16 +64,16 @@
 
           //  computed: {
           //       showSumdata(){
-
+                      
           //             for(key in this.sumData[0]){
           //               sumarr.push(this.sumData[0].key)
-          //             }
+          //             } 
           //             console.log(this.sumarr)
           //             return this.sumarr
           //       }
           //  }
   }
-
+    
 </script>
 <style lang="scss">
  @import "~common/style/variable";

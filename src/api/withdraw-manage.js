@@ -18,7 +18,7 @@ export const addWithdraw = function ({BigMerchantID, StoreSerial, WithdrawalAmou
     FunCode: 65075,
     BigMerchantID,
     StoreSerial,
-    Amt: WithdrawalAmount,
+    Amt:WithdrawalAmount,
     Remark,
     PayPWD,
     OrderID

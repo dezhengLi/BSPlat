@@ -77,8 +77,9 @@
             message: '请选定数据'
           })
         }
-
-        this.resolve(activeData)
+        console.log(activeData)
+        console.log(this.resolve)
+        this.resolve(activeData)        
         this.isShowPopup = false
       },
       close () {
@@ -95,6 +96,7 @@
         return field
       },
       initSearch () {
+        console.log(this)
         const { defaultQueryKey, defaultQueryVal, popupQuery } = this
         this.searchKey = defaultQueryKey || popupQuery[0]
         this.searchVal = defaultQueryVal

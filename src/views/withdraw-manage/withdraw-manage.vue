@@ -36,10 +36,11 @@
     methods: {
       // 新增
       add() {
-        const addFiled = [{title: '', info: ['BigMerchantID', 'StoreSerial']},
-                         {title: '资金信息', info: ['CurrentBalances', 'UnsettledAmount', 'OutMoneyThreshold', 'FrozenAmount', 'TransitAmount', 'AvailableBalance']},
-                         {title: '结算账户信息', info: ['WithdrawAccountNo', 'WithdrawAccountName', 'WithdrawBankID', 'WithdrawSubBranchBankName', 'WithdrawSubBranchBankID']},
-                         {title: '', info: ['WithdrawalAmount', 'PayPWD', 'Remark']}]
+        
+        const addFiled =[{title:'',info:['BigMerchantID', 'StoreSerial']},
+                         {title:'资金信息',info:['CurrentBalances', 'UnsettledAmount','OutMoneyThreshold','FrozenAmount','TransitAmount','AvailableBalance']},
+                         {title:'结算账户信息',info:['WithdrawAccountNo', 'WithdrawAccountName','WithdrawBankID','WithdrawSubBranchBankName','WithdrawSubBranchBankID']},
+                         {title:'',info:['WithdrawalAmount', 'PayPWD','Remark']}]
         // 全局引入$commonPopup
         this.$addPopup({
           titleField: addFiled,
@@ -55,9 +56,10 @@
       // 审核
       audit() {
       this.$commonPopup({
-        titleField: ['AuditStatus', 'TransferMethod', 'BankSerial', 'Remark'],
+        titleField: ['AuditStatuso', 'TransferMethod', 'BankSerial', 'Remark'],
         submitFc: (params, p) => {
           // this.activeData选定的全部内容
+          this.activeData.AuditStatus=params.AuditStatuso
           params = Object.assign({}, this.activeData, params)
           // 弹框的数据处理
           this.popupHttpFc(params, p, auditWithdraw)
@@ -65,12 +67,12 @@
       })
     },
       _initData() {
-        // table-query的输入框
+        //table-query的输入框
         this.queryTitle = ['BigMerchantID', 'StoreSerial', 'StartTime', 'EndTime', 'OrderID']
-        // table-content 的显示
+        //table-content 的显示
         this.tableTitle = ['ApplicationDate', 'OrderID', 'PlatSerial', 'Amount', 'StoreSerial', 'StoreName', 'BankAccountNo', 'BankAccountName', 'ApplicationCode', 'AuditStatus', 'ExecuteType']
-        // 详情的输入框
-        this.detailFieldName = ['ApplicationDate', 'OrderID', 'PlatSerial', 'Amount', 'StoreSerial', 'StoreName', 'BigMerchantID', 'BigMerchantName', 'BankAccountNo', 'BankAccountName', 'ApplicationCode', 'OperatorCode', 'AuditStatus', 'ExecuteType', 'ConfirmDate', 'ConfirmOperatorCode', 'AuditRemark']
+        //详情的输入框
+        this.detailFieldName = ['ApplicationDate', 'OrderID','PlatSerial', 'Amount', 'StoreSerial', 'StoreName', 'BigMerchantID', 'BigMerchantName', 'BankAccountNo', 'BankAccountName', 'ApplicationCode', 'OperatorCode', 'AuditStatus', 'ExecuteType', 'ConfirmDate', 'ConfirmOperatorCode', 'AuditRemark']
       }
     }
   }

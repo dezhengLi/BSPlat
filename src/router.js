@@ -109,56 +109,77 @@ export default new Router({
         path: encodeURIComponent('/渠道信息管理'),
         component: () => import('views/passInfo-manage/passInfo-manage'),
         privilege: privilegeOr([types.CusBankInfo_Query, types.CusBankInfo_Modify, types.CusBankBalance_Query])
-      }, {
+      },{
         path: encodeURIComponent('/渠道参数管理'),
         component: () => import('views/passparam-manage/passparam-manage'),
         privilege: privilegeOr([types.BankParamConfig_Query, types.BankParamConfig_Modify])
-      }, {
+      },{
         path: encodeURIComponent('/签到签退管理'),
         component: () => import('views/signInout-manage/signInout-manage'),
         privilege: privilegeOr([types.BankSignInOut_Query, types.BankSignInOut_Modify, types.BankForceSignIn, types.BankForceSignOut])
-      }, {
+      },{
         path: encodeURIComponent('/子商户管理'),
         component: () => import('views/submerchant-manage/submerchant-manage'),
         privilege: privilegeOr([types.SubMerchantManage_Query, types.SubMerchantManage_Add, types.SubMerchantManage_Modify, types.SubMerchantManage_Delete])
-      }, {
+      },{
         path: encodeURIComponent('/当前余额查询'),
         component: () => import('views/currentbalance-query/currentbalance-query'),
         privilege: privilegeOr([types.MerchantCurrentBalance_Query])
-      }, {
+      },{
         path: encodeURIComponent('/历史余额查询'),
         component: () => import('views/historybalance-query/historybalance-query'),
         privilege: privilegeOr([types.MerchantHisBalance_Query])
-      }, {
+      },{
         path: encodeURIComponent('/充值'),
         component: () => import('views/recharge/recharge'),
         privilege: privilegeOr([types.MerchantRecharge_Add])
-      }, {
+
+      },{
         path: encodeURIComponent('/汇总数据查询'),
         component: () => import('views/collectdata-query/collectdata-query'),
         privilege: privilegeOr([types.MerchantSummaryData_Query])
-      }, {
+      },{
         path: encodeURIComponent('/订单流水查询'),
         component: () => import('views/orderflow-query/orderflow-query'),
         privilege: privilegeOr([types.MerchantTradeDetails_Query, types.OrderResult_Synchronise, types.OrderResult_Reissue, types.SingleOrder_ReturnRemittance, types.PaymentManage_Tuikuang, types.SerailOrder_Tracking])
-      }, {
+      },{
         path: encodeURIComponent('/单笔订单查询'),
         component: () => import('views/singleorder-query/singleorder-query'),
         privilege: privilegeOr([types.MerchantSingleDetail_Query, types.OrderResult_Synchronise, types.OrderResult_Reissue, types.SingleOrder_ReturnRemittance,
           types.PaymentManage_Tuikuang, types.Order_Tracking])
-      }, {
+      },{
         path: encodeURIComponent('/代付管理'),
         component: () => import('views/payment-manage/payment-manage'),
         privilege: privilegeOr([types.PaymentManage_Query, types.Merchant_Payment, types.PaymentManage_Audit])
-      }, {
+      },{
+        path: encodeURIComponent('/商户结算管理'),
+        component: () => import('views/merchant-settle/merchant-settle'),
+        privilege: privilegeOr([types.MerchantDailySettleDetail_Query, types.MerchantSummaryData_Query])
+      },{
+        path: encodeURIComponent('/商户结算汇总'),
+        component: () => import('views/merchant-collect/merchant-collect'),
+        privilege: privilegeOr([types.MerchantDailySettleDetail_Query, types.MerchantSummaryData_Query])
+      },{
+        path: encodeURIComponent('/渠道结算明细'),
+        component: () => import('views/channel-settle/channel-settle'),
+        privilege: privilegeOr([types.CusBankDailySettleDetail_Query])
+      },{
+        path: encodeURIComponent('/渠道结算汇总'),
+        component: () => import('views/channel-collect/channel-collect'),
+        privilege: privilegeOr([types.CusBankSummarySettle_Query])
+      },{
+        path: encodeURIComponent('/差错账目查询'),
+        component: () => import('views/reconcile-adjust/reconcile-adjust'),
+        privilege: privilegeOr([types.CusBankWrongAccount_Query, types.CusBankWrongAccount_Adjust])
+      },{
         path: encodeURIComponent('/密钥管理'),
         component: () => import('views/keymanage-ment/keymanage-ment'),
         privilege: privilegeOr([types.MerchantKeyInfo_Query, types.MerchantWordKeyInfo_Modify, types.MerchantKeyInfo_Modify])
-      }, {
+      },{
         path: encodeURIComponent('/修改支付密码'),
         component: () => import('views/pay-password/pay-password'),
         privilege: privilegeOr([types.MerchantPayPwdInfo_Modify])
-      }, {
+      },{
         path: encodeURIComponent('/修改代付审核密码'),
         component: () => import('views/payaudit-password/payaudit-password'),
         privilege: privilegeOr([types.MerchantPayAuditPassword_Modify])

@@ -14,6 +14,7 @@ import queryComponentMixin from 'common/mixins/queryComponentMixin'
 import commonPanelMixin from 'common/mixins/common-panel-method.js'
 import {getKey} from 'api/utils.js'
 import {strEnc} from '../../common/config/crypto.config.js'
+let Base64 = require('js-base64').Base64
 import {
   getMerchantManage,
   registerManage,
@@ -24,7 +25,6 @@ import {
   modifyManage,
   updatePWMerchant
 } from 'api/merchant-manage'
-let Base64 = require('js-base64').Base64
 
 export default {
   mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
@@ -35,8 +35,8 @@ export default {
     this.requestFunc = getMerchantManage
     this.detailFieldName = [
       {
-        title: '基本信息',
-        info: [
+        title:"基本信息",
+        info:[
               'MerchantID',
               'MerchantType',
               'MerchantStatus',
@@ -65,8 +65,8 @@ export default {
               'AgencyName'
               ]
       },
-      {title: '状态设置',
-       info: ['AuditStatus', 'Auditor', 'AuditTime', 'AuditRemark', 'ActiveStatus', 'Activator', 'ActiveTime', 'ActiveRemark']
+      {title:"状态设置",
+       info:['AuditStatus', 'Auditor','AuditTime', 'AuditRemark', 'ActiveStatus','Activator','ActiveTime','ActiveRemark']
           }
     ]
     this.navData = [
@@ -142,8 +142,8 @@ export default {
     },
     modify() {
       const modifyFiled = [{
-        title: '基本信息',
-        info: [
+        title:"基本信息",
+        info:[
               'MerchantID',
               'MerchantType',
               'MerchantStatus',
@@ -169,10 +169,10 @@ export default {
               'AgencyName'
               ]
       },
-      {title: '状态设置',
-       info: ['AuditStatus', 'Auditor', 'AuditTime', 'AuditRemark', 'ActiveStatus', 'Activator', 'ActiveTime', 'ActiveRemark']
+      {title:"状态设置",
+       info:['AuditStatus', 'Auditor','AuditTime', 'AuditRemark', 'ActiveStatus','Activator','ActiveTime','ActiveRemark']
           }
-
+        
       ]
       this.$commonPopup({
         titleField: modifyFiled,
@@ -195,10 +195,10 @@ export default {
             },
             AgencyName: {
               readonly: true
-            },
+            }, 
             AuditStatus: {
               readonly: true
-            },
+            }, 
             Auditor: {
               readonly: true
             },
@@ -254,12 +254,13 @@ export default {
       this.$commonPopup({
         titleField: ['OldLoginPwd', 'NewLoginPwd', 'ConfirmPwd'],
         submitFc: (params, p) => {
-          params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial}, this.activeData)
-          params.OldLoginPwd = strEnc(params.OldLoginPwd, this.getkey)
-          params.NewLoginPwd = strEnc(params.NewLoginPwd, this.getkey)
-          params.ConfirmPwd = strEnc(params.ConfirmPwd, this.getkey)
-
-          this.popupHttpFc(params, p, updatePWMerchant)
+          
+          params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial},this.activeData)
+          params.OldLoginPwd=strEnc(params.OldLoginPwd, this.getkey)
+          params.NewLoginPwd=strEnc(params.NewLoginPwd, this.getkey)
+          params.ConfirmPwd=strEnc(params.ConfirmPwd, this.getkey)
+          
+          this.popupHttpFc(params, p,updatePWMerchant)
         }
       })
     },

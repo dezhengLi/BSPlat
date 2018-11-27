@@ -18,6 +18,8 @@ export const getPayPassManage = function({MerchantID}) {
     // }
 
 export const addPayPassManage = function({ArrivalWay, MerchantID, PayTypeName, PayType, SubMerchantID, CusBankName, IsAllow, ControlFlag, LessAmount, MaxAmount, MaxTotalAmount, StartTime, EndTime, MoneyFee, FeeMode, LessFee}) {
+
+   
     const rqParams = {
         FunCode: 65139,
         ArrivalWay,

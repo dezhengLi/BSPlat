@@ -35,7 +35,7 @@
       :data="showData"
       height="550px"
       class="c-table-content"
-      @row-click="rowClick"
+      @row-click="rowClick"    
     >
       <el-table-column
         v-for="key in tableTitle"
@@ -57,11 +57,12 @@
       class="c-table--pagination"
       @current-change="paginationCurrentChange"
     />
-
+ 
   </div>
 </template>
 
 <script>
+
 
   import { TST_NAME, TST_OPTIONS } from 'common/config/constants'
 
@@ -84,7 +85,7 @@
     },
     data () {
       return {
-        page: 1
+        page: 1,
       }
     },
     computed: {
@@ -166,7 +167,9 @@
           let PageID = Math.ceil(page * PAGE_SIZE / DATA_REQ_SIZE)
           this.$emit('dataReq', PageID)
         }
-      }
+      },
+
+
 
     }
   }

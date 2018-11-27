@@ -14,7 +14,7 @@
       // 显示头部字段
       titleField: {
         type: Array,
-        default: () => ([{title: '', info: []}, {title: '', info: []}, {title: '', info: []}, {title: '', info: []}])
+        default: () => ([{title:'',info:[]},{title:'',info:[]},{title:'',info:[]},{title:'',info:[]}])
       },
       // 渲染表格数据
       renderData: {
@@ -39,8 +39,8 @@
     // }),
     data () {
       return {
-        isShowPopup: false
-
+        isShowPopup: false,
+        
       }
     },
     computed: {
@@ -51,7 +51,7 @@
       // titleFieldLen () {
       //   return this.titleField.length
       // },
-      titleFieldLen() {
+      titleFieldLen(){
           return this.titleField.length
       },
       // 判断头部字段的个数，大于8个选择宽度大的弹框
@@ -59,11 +59,14 @@
       //   return this.titleFieldLen < CTR_COLUMN_LEN
       // }
       isChangeCls () {
-          if (typeof this.titleField[0] === 'object' || typeof this.titleField[0] === 'number') {
-              return this.titleFieldLen > CTR_COLUMN_LEN
-          } else {
+          if(typeof this.titleField[0]=="object"||typeof this.titleField[0]=="number"){
+
+              return this.titleFieldLen>CTR_COLUMN_LEN
+          }else{
+           
            return this.titleFieldLen < CTR_COLUMN_LEN
           }
+        
       }
     },
 
@@ -90,9 +93,9 @@
       // r是一个对象
       _initRenderData () {
         // 生成一个初始对象
-
-        let newRenderData = {}
-          if (this.titleField.title) {
+ 
+        let newRenderData ={}
+          if(this.titleField.title){
                newRenderData = this.titleField.info.reduce((r, k) => {
                 // 防止空白占位符
                 if (k === '') {
@@ -102,7 +105,7 @@
                   [k]: ''
                 })
               }, {})
-          } else {
+          }else{
                newRenderData = this.titleField.reduce((r, k) => {
                 // 防止空白占位符
                 if (k === '') {
@@ -115,12 +118,16 @@
           }
 
         this.renderData = Object.assign({}, newRenderData, this.renderData)
-      }
+      },
+      
 
     },
     render () {
+      console.log(this)
+      
       const { titleField, renderData, readonly, isChangeCls } = this
-
+      console.log(titleField)
+      console.log(renderData)
       return (
 
         <el-dialog
@@ -128,19 +135,21 @@
           width={isChangeCls ? '550px' : '900px'}
           beforeClose={this.closePopup}
           class={{}}
-        >
+        >            
               <div>
-
+             
+                    
+                
                       <div>
-
+                            
                             <div class="dcommonpopup">
                               <el-form
                                 label-width="152px"
                                 label-suffix="："
                                 inline
-                              >
+                              > 
                                <el-form-item label={titleField[0].title} class="form-box1">
-
+                                  
                                   {this._renderInputCtr(titleField[0].info, renderData)}
                                </el-form-item>
 
@@ -159,15 +168,17 @@
                                   </div>
                                </div>
                                <el-form-item label={titleField[3].title} class="form-box4">
-
+                                  
                                   {this._renderInputCtr(titleField[3].info, renderData)}
-                               </el-form-item>
+                               </el-form-item>            
                               </el-form>
                             </div>
                        </div>
-
-          </div>
-
+                  
+            
+          </div> 
+          
+          
           <div slot="footer">
             {readonly
               ? null
@@ -213,6 +224,6 @@
               padding-left: 20px;
             }
        }
-
+       
    }
 </style>

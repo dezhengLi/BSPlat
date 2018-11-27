@@ -49,10 +49,10 @@ function downloadFile ({docData, filename}) {
     let blob = new Blob([docData], {type: `application/vnd.ms-${MSDocType}`})
     csvUrl = window.URL.createObjectURL(blob)
   } else {
-    cssUrl = `data:text/csv;charset=utf-8, \ufeff ${encodeURIComponent(docData)}`
+    csvUrl = `data:text/csv;charset=utf-8, \ufeff ${encodeURIComponent(docData)}`
   }
 
-  link.setAttribute('href', cssUrl)
+  link.setAttribute('href', csvUrl)
   link.click()
   link.parentNode.removeChild(link)
 }

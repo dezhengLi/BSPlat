@@ -6,7 +6,7 @@
         :key="key"
         class="item"
         @click="panelTrigger(item)"
-
+        
       >
         <svg-icon
           v-if="item.icon"
@@ -33,7 +33,7 @@
     methods: {
       panelTrigger (item) {
         // 根据导出表格作出的判断
-        if (item.fcName != 'exporttable') {
+        if(item.fcName!='exporttable'){
             if (!item.noNeedData && !this.currentActive) {
               return this.$message({
                 message: `请选择需要${item.label}的数据`

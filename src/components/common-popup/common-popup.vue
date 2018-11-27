@@ -51,7 +51,7 @@
       // titleFieldLen () {
       //   return this.titleField.length
       // },
-      titleFieldLen() {
+      titleFieldLen(){
           return this.titleField.length
       },
       // 判断头部字段的个数，大于8个选择宽度大的弹框
@@ -59,11 +59,14 @@
       //   return this.titleFieldLen < CTR_COLUMN_LEN
       // }
       isChangeCls () {
-          if (typeof this.titleField[0] === 'object' || typeof this.titleField[0] === 'number') {
-              return this.titleFieldLen > CTR_COLUMN_LEN
-          } else {
+          if(typeof this.titleField[0]=="object"||typeof this.titleField[0]=="number"){
+
+              return this.titleFieldLen>CTR_COLUMN_LEN
+          }else{
+           
            return this.titleFieldLen < CTR_COLUMN_LEN
           }
+        
       }
     },
       created () {
@@ -101,11 +104,11 @@
         //     return r
         //   }
         //   return Object.assign({}, r, {
-        //     [k]: ''
+        //     [k]: '' 
         //   })
         // }, {})
-        let newRenderData = {}
-          if (this.titleField.title) {
+        let newRenderData ={}
+          if(this.titleField.title){
                newRenderData = this.titleField.info.reduce((r, k) => {
                 // 防止空白占位符
                 if (k === '') {
@@ -115,7 +118,7 @@
                   [k]: ''
                 })
               }, {})
-          } else {
+          }else{
                newRenderData = this.titleField.reduce((r, k) => {
                 // 防止空白占位符
                 if (k === '') {
@@ -151,8 +154,10 @@
       }
     },
     render () {
+      console.log(this)
       const { titleField, renderData, readonly, isChangeCls, pickerOptions } = this
-
+       console.log(titleField)
+       console.log(renderData)
       return (
 
         <el-dialog
@@ -160,11 +165,11 @@
           width={isChangeCls ? '550px' : '900px'}
           beforeClose={this.closePopup}
           class={{'c-common--popup': true, 'column--popup': isChangeCls}}
-        >
+        >            
               <div>
-             { typeof this.titleField[0] === 'object' || typeof this.titleField[0] === 'number'
-
-                ? this.titleField.map(items => {
+             { typeof this.titleField[0]=="object"||typeof this.titleField[0]=="number"?
+                    
+                this.titleField.map(items=>{
                   return <div>
                             <div><span>{items.title}</span><span>:</span></div>
                             <div class="dcommonpopup">
@@ -179,19 +184,20 @@
                               </el-form>
                             </div>
                           </div>
-                })
-                 : <el-form
+                }):                
+                 <el-form
                     label-width="152px"
                     label-suffix="："
                     inline
                   >
                     {readonly
                         ? this._renderReadonlyCtr(titleField, renderData)
-                        : this._renderInputCtr(titleField, renderData, pickerOptions)}
-                  </el-form>
+                        : this._renderInputCtr(titleField, renderData,pickerOptions)}
+                  </el-form>                   
              }
-          </div>
-
+          </div> 
+          
+          
           <div slot="footer">
             {readonly
               ? null
@@ -227,8 +233,8 @@
         //   width={isChangeCls ? '550px' : '900px'}
         //   beforeClose={this.closePopup}
         //   class={{'c-common--popup': true, 'column--popup': isChangeCls}}
-        // >
-
+        // > 
+          
         //   {
         //     this.titleField.map(items=>{
         //        return <div>

@@ -26,6 +26,7 @@ export default {
         popupCont,
         FunCode
       }).then(params => {
+        console.log(params)
         this._changeVal(params[key], key)
       })
     },
@@ -81,30 +82,40 @@ export default {
           //     : optionsKey[0]
           val = isAll
           ? val
-          : val !== ''
+          : val !== '--请选择--'
             ? val
-            : optionsKey[0]
+            : optionsKey[0] 
           val = !isNaN(val) ? val.toString() : val
+          result = (
+           <div>
+            
+              {isAll
+                ? 
+                <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val}>
+                <el-option key="" label="全部" value="" />
+                {optionsKey.map(k => (
+                  <el-option key={k} label={options[k]} value={k} /> ))}
+                  </el-select> 
+                :                 
+                 <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val} placeholder="请选择">
+                <el-option key="" label="--请选择--" value="" />
+                {optionsKey.map(k => (
+                  <el-option key={k} label={options[k]} value={k} />
+                  ))}
+                </el-select>}
+
+            </div>
+          )
           // result = (
           //   <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val}>
           //     {isAll
-          //       ? <el-option key="null" label="全部" value="null" />
+          //       ? <el-option key="" label="全部" value="" />
           //       : null}
           //     {optionsKey.map(k => (
           //       <el-option key={k} label={options[k]} value={k} />
           //     ))}
           //   </el-select>
           // )
-          result = (
-            <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val}>
-              {isAll
-                ? <el-option key="" label="全部" value="" />
-                : null}
-              {optionsKey.map(k => (
-                <el-option key={k} label={options[k]} value={k} />
-              ))}
-            </el-select>
-          )
         } else if (type === TIME_INPUT && pickerOptions) {
               // } else if (type === TIME_INPUT) {
           result = (

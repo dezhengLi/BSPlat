@@ -3,12 +3,14 @@ import { reqWrap } from './utils'
 export const getsubmerchantInfo = function({CusBankID}) {
     const rqParams = {
         FunCode: 65217,
-        CusBankID: CusBankID === '' ? -1 : CusBankID
+        CusBankID:CusBankID===""?-1:CusBankID
     }
     return reqWrap(rqParams)
 }
 
-export const addSubMerchant = function({CusBankID, SubMerchantID, SubMerchantName, SubMerchantType}) {
+
+
+export const addSubMerchant = function({CusBankID,SubMerchantID,SubMerchantName,SubMerchantType}) {
     const rqParams = {
         FunCode: 65227,
         CusBankID,
@@ -19,7 +21,7 @@ export const addSubMerchant = function({CusBankID, SubMerchantID, SubMerchantNam
     return reqWrap(rqParams)
 }
 
-export const modifySubMerchant = function({CusBankID, SubMerchantID, SubMerchantName, SubMerchantType}) {
+export const modifySubMerchant = function({CusBankID,SubMerchantID,SubMerchantName,SubMerchantType}) {
     const rqParams = {
         FunCode: 65229,
         CusBankID,
@@ -30,17 +32,21 @@ export const modifySubMerchant = function({CusBankID, SubMerchantID, SubMerchant
     return reqWrap(rqParams)
 }
 
-export const activeSubMerchant = function({CusBankID, SubMerchantID, IsInvalid}) {
+
+
+export const activeSubMerchant = function({CusBankID,SubMerchantID,IsInvalid}) {
     const rqParams = {
         FunCode: 65229,
         CusBankID,
         SubMerchantID,
-        IsInvaid: IsInvalid
+        IsInvaid:IsInvalid
     }
     return reqWrap(rqParams)
 }
 
-export const DeleteSubMerchant = function({CusBankID, SubMerchantID}) {
+
+
+export const DeleteSubMerchant = function({CusBankID,SubMerchantID}) {
     const rqParams = {
         FunCode: 65231,
         CusBankID,

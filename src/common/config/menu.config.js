@@ -210,7 +210,8 @@ export default [
           {
             path: encodeURIComponent('/商户结算汇总'),
             label: '商户结算汇总',
-            icon: 'example'
+            icon: 'example',
+            privilege: privilegeOr([types.MerchantDailySettleDetail_Query, types.MerchantSummaryData_Query])
           }
         ]
       },

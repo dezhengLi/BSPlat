@@ -3,21 +3,21 @@ import TableQuery from 'components/table-query'
 import TableContent from 'components/table-content'
 import NavPanel from 'components/nav-panel'
 import SumPanel from 'components/sum-panel'
-import SumhPanel from 'components/sumh-panel'
+import SumhPanel  from 'components/sumh-panel'
 import * as types from 'src/store/mutations-type'
 import labelMixin from './labelMixin'
 import { isOK } from 'api/utils'
 
 export default {
   mixins: [labelMixin],
-  components: { TableQuery, TableContent, NavPanel, SumPanel, SumhPanel},
+  components: { TableQuery, TableContent, NavPanel,SumPanel,SumhPanel},
   data () {
     return {
       historyQuery: {},
       tableData: {
         count: 0,
         requestData: [],
-        otherData: []
+        otherData:[]
       },
       activeData: null
     }
@@ -51,14 +51,15 @@ export default {
       // }
       if (isOK(code)) {
         this.historyQuery = params
-        if (this.FunKey.length == 2) {
+        if(this.FunKey.length==2){
           this.tableData.requestData = data[this.FunKey[0]]
           this.tableData.otherData = data[this.FunKey[1]]
           this.tableData.count = data['RowCount'] || data[this.FunKey[0]].length
-        } else {
+        }else{
           this.tableData.requestData = data[this.FunKey]
           this.tableData.count = data['RowCount'] || data[this.FunKey].length
         }
+        
       }
     },
     async updateData (params) {
@@ -66,23 +67,25 @@ export default {
       const { data } = await this.requestFunc(params)
       this.setGlobalLoading(false)
       // const len = data[this.FunKey].length
-      let len = null
-      if (this.FunKey.length == 2) {
+      let len=null
+      if(this.FunKey.length==2){
          len = data[this.FunKey[0]].length
          console.log(len)
-      } else {
+      }else{
         len = data[this.FunKey].length
         console.log(len)
       }
 
+
       const { PageID, PageSize = 60 } = params
       // const dataAr = data[this.FunKey]
-      let dataAr = []
-      if (this.FunKey.length == 2) {
+      let dataAr=[]
+      if(this.FunKey.length==2){
          dataAr = data[this.FunKey[0]]
-      } else {
+      }else{
          dataAr = data[this.FunKey]
       }
+
 
       const start = (PageID - 1) * PageSize
       for (let i = 0; i < len; i++) {

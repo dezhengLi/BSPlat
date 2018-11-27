@@ -71,19 +71,20 @@ export const activeStore = function({StoreSerial, ActiveStatus, ActiveRemark, St
 export const sendOpenEmail = function({StoreSerial}) {
   const rqParams = {
     FunCode: 65211,
-    MerchantID: StoreSerial
+    MerchantID:StoreSerial
   }
   return reqWrap(rqParams)
 }
 
-export const updatePWMerchant = function ({StoreSerial, StaffName, ConfirmPwd, NewLoginPwd, OldLoginPwd, OriPlatSerial}) {
+
+export const updatePWMerchant = function ({StoreSerial,StaffName,ConfirmPwd,NewLoginPwd,OldLoginPwd,OriPlatSerial}) {
   const rqParams = {
     FunCode: 65037,
     StoreSerial,
     StaffName,
     ConfirmPwd,
-    NewPayPwd: NewLoginPwd,
-    PayPWD: OldLoginPwd,
+    NewPayPwd:NewLoginPwd,
+    PayPWD:OldLoginPwd,
     OriPlatSerial
   }
   return reqWrap(rqParams)
