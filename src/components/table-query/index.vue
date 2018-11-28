@@ -45,6 +45,8 @@
           })
         ), {}))
         console.log(this.queryData)
+        //给表格的参数内容
+        this.$emit('exportQuery', this.queryData)
       },
       // 时间
       _initPickerOptions () {

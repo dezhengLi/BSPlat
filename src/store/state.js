@@ -10,7 +10,8 @@ const state = {
     opened: !!+getSidebarState()
   },
   menu: [],
-  globalLoading: false
+  globalLoading: false,
+ 
 }
 
 export default state

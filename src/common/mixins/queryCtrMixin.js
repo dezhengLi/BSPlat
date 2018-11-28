@@ -53,6 +53,7 @@ export default {
         : 'text'
     },
     _renderInputCtr (queryTitle, queryData, pickerOptions, isAll) {
+      
       console.log(this)
       const {_inputType, _textType, getValue, fieldConfig} = this
       return queryTitle.map((key) => {

@@ -42,7 +42,7 @@ export default {
     //     </el-menu-item>
     //   )
     // },
-        renderItem (item) {
+      renderItem (item) {
       const { path, icon, label,onClick } = item
       if(item.onClick){
           return (

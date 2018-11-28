@@ -12,7 +12,6 @@ export const getcurrentbalance = function({StoreSerial}) {
 export const getsubcurrentbalance = function({StoreSerial,PageID}) {
     const rqParams = {
         FunCode: 65049,
-        PageSiz: 60,
         StoreSerial,
         PageID
     }
