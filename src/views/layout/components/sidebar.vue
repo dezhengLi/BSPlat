@@ -43,15 +43,15 @@ export default {
     //   )
     // },
       renderItem (item) {
-      const { path, icon, label,onClick } = item
-      if(item.onClick){
+      const { path, icon, label, onClick } = item
+      if (item.onClick) {
           return (
           <el-menu-item onClick={item.onClick}>
             { this.renderSvg(icon) }
             <span>{ label }</span>
           </el-menu-item>
         )
-      }else{
+      } else {
               return (
             <el-menu-item index={path}>
               { this.renderSvg(icon) }
@@ -59,7 +59,6 @@ export default {
             </el-menu-item>
           )
       }
-      
     },
     renderSidebar (item) {
       if (item.children) {

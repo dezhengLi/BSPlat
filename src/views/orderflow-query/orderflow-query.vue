@@ -1,6 +1,6 @@
 <template>
   <div class="roleManage-container">
-    <table-query :query-title="queryTitle" @handleQuery="getQueryData"/>
+    <table-query :query-title="queryTitle" @handleQuery="getQueryData" @exportQuery="exportparams" />
     <table-content :table-title="tableTitle" :table-data="tableData" @activeData="getActiveData" @dataReq="dataReq">
       <nav-panel slot="panel" :nav-data="navData" :current-active="isActiveData" @triggerPanel="triggerPanel"/>
     </table-content>
@@ -12,13 +12,22 @@
   import requestMixin from 'common/mixins/requestMixin'
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
-  import {getorderflow,orderflowSync,supplyOrderflow,paymentOrderflow,refundOrderflow,TraceOrderflow} from 'api/orderflow-query'
+  import {getorderflow, orderflowSync, supplyOrderflow, paymentOrderflow, refundOrderflow, TraceOrderflow, getexporttable} from 'api/orderflow-query'
   import {getKey} from 'api/utils'
   import {strEnc} from '../../common/config/crypto.config.js'
-  let Base64 = require('js-base64').Base64 
+  import exportExcel from 'common/js/export.js'
+  import { ERR_OK } from '../../common/config/api.config'
+  let Base64 = require('js-base64').Base64
 
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
+    data: function() {
+        return {
+          sumData: [],
+          labelTitle: {},
+          exportParams: {}
+        }
+    },
     created() {
       this.historyQuery = {}
       this._initData()
@@ -26,7 +35,7 @@
       this.FunKey = 'TradeDetails'
       this.requestFunc = getorderflow
       this.navData = [{
-        label: '订单状态同步',        
+        label: '订单状态同步',
         fcName: 'OrderSync'
       }, {
         label: '补发通知',
@@ -49,29 +58,29 @@
       }]
     },
     methods: {
-      
+
      async OrderSync() {
       this.setGlobalLoading(true)
       const { code, msg } = await orderflowSync(this.activeData)
-      
+
       this.setGlobalLoading(false)
       if (this.isOK(code)) {
         this._$queryMessage({ code, msg })
       }
     },
      async supply() {
-        const pad=10
+        const pad = 10
         console.log(pad)
-        //出现模糊弹罩
+        // 出现模糊弹罩
       this.setGlobalLoading(true)
-      //请求数据
+      // 请求数据
       const { code, msg } = await supplyOrderflow(this.activeData)
-      //提示框
+      // 提示框
       this._$queryMessage({ code, msg })
-      //清除模糊弹罩
+      // 清除模糊弹罩
       this.setGlobalLoading(false)
-    },  
-    
+    },
+
     payment() {
         const paymentFiled = ['PayAuditPwd', 'ReexchangeRemark']
         // 审核密码时还需用到一个随机数和加密key，获取密钥
@@ -84,47 +93,65 @@
         this.$commonPopup({
           titleField: paymentFiled,
           // submitFc是公共弹框里设置的一个属性函数
-        submitFc: (params, p) => {
+          submitFc: (params, p) => {
+            params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial}, this.activeData)
+              // 加密
+            params.PayAuditPwd = strEnc(params.PayAuditPwd, this.getkey)
+              this.popupHttpFc(params, p, paymentOrderflow)
+            }
+          })
+      },
 
-           params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial},this.activeData)
-            // 加密
-           params.PayAuditPwd = strEnc(params.PayAuditPwd, this.getkey)
-            this.popupHttpFc(params, p, paymentOrderflow)
-          }
-        })
-      }, 
-      
       refund() {
         const refundFiled = ['PayAuditPwd', 'RefundRemark']
-        
+
        getKey().then((res) => {
           this.getkey = Base64.decode(res.data.DesKey)
           this.OriPlatSerial = res.data.PlatSerial
-       })    
+       })
         this.$commonPopup({
           titleField: refundFiled,
-          
+
         submitFc: (params, p) => {
            console.log(this.activeData)
-           params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial},this.activeData)
-           
+           params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial}, this.activeData)
+
            params.PayAuditPwd = strEnc(params.PayAuditPwd, this.getkey)
             this.popupHttpFc(params, p, refundOrderflow)
           }
         })
       },
-    
+
     async OrderTrace() {
       this.setGlobalLoading(true)
       const { code, msg } = await TraceOrderflow(this.activeData)
       this._$queryMessage({ code, msg })
       this.setGlobalLoading(false)
- 
     },
+    // 获取tablequery里的内容
+    exportparams(data) {
+        this.exportParams = data
+    },
+    async  exporttable() {
+              // 由于数据大,表格由后台生成,前端再引用
+              let params = this.exportParams
+              const {code, msg, data} = await getexporttable(params)
+              const fileName = data.fileName
+              if (code === '0000' && fileName) {
+                  var link = document.createElement('a')
+                  link.href =
+                    'http://192.168.11.111:8080' + '/AgentPlat' + '/export?fileName=' + fileName
+                  document.body.appendChild(link)
+                  link.click()
+                  document.body.removeChild(link)
+                  link = null
+                }
+             this._$queryMessage({code, msg})
+        },
       _initData() {
-        this.queryTitle = ['StoreSerial', 'MerchantName', 'StartTime', 'EndTime','CusBankID','PayType','ExecuteType','ExecuteStatus']
-        this.tableTitle = ['PlatTradeTime', 'OrderID', 'PlatSerial','ThirdSerial', 'PlatOrderID',  'StoreSerial', 'StoreName', 'CusBankName', 'PayType', 'ExecuteType', 'ExecuteStatus', 'Amt','Charge','CurrCode']
-         this.detailFieldName = [ 'OrderID','StoreSerial', 'PlatSerial', 'StoreName','ThirdSerial','BankAccountNo','CurrCode','BankAccountName','CusBankID','CusBankName','Amt','BankID','Charge','Subject','ExecuteType','OperatorID','ExecuteStatus','SubmitTime','DealText','FinishTime']
+        this.queryTitle = ['StoreSerial', 'MerchantName', 'StartTime', 'EndTime', 'CusBankID', 'PayType', 'ExecuteType', 'ExecuteStatus']
+        this.tableTitle = ['PlatTradeTime', 'OrderID', 'PlatSerial', 'ThirdSerial', 'PlatOrderID', 'StoreSerial', 'StoreName', 'CusBankName', 'PayType', 'ExecuteType', 'ExecuteStatus', 'Amt', 'Charge', 'CurrCode']
+         this.detailFieldName = [ 'OrderID', 'StoreSerial', 'PlatSerial', 'StoreName', 'ThirdSerial', 'BankAccountNo', 'CurrCode', 'BankAccountName', 'CusBankID', 'CusBankName', 'Amt', 'BankID', 'Charge', 'Subject', 'ExecuteType', 'OperatorID', 'ExecuteStatus', 'SubmitTime', 'DealText', 'FinishTime']
       }
     }
   }

@@ -5,7 +5,7 @@ export const getpaymentmanage = function({AuditStatus, StoreSerial, OrderID, Sta
   const rqParams = {
     FunCode: 65163,
     PageID: 1,
-    AuditStatus:AuditStatus===""?-1:AuditStatus,
+    AuditStatus: AuditStatus === '' ? -1 : AuditStatus,
     StoreSerial,
     OrderID,
     StartTime: new ParseTime(StartTime).formatTime,
@@ -23,7 +23,7 @@ export const getpaymentmanage = function({AuditStatus, StoreSerial, OrderID, Sta
 }
 
  // 新增
- export const addpayment = function ({OrderID, MachineIP,MerchantID,BankAccountName,BankID,BankAccountNo,Province,AccountProp,City,WithdrawTel,BranchBankName,CardType,SubBranchBankName,CardNum,SubBranchBankID,AvailableBalance,Amt,Summary,PayPWD,OriPlatSerial}) {
+ export const addpayment = function ({OrderID, MachineIP, MerchantID, BankAccountName, BankID, BankAccountNo, Province, AccountProp, City, WithdrawTel, BranchBankName, CardType, SubBranchBankName, CardNum, SubBranchBankID, AvailableBalance, Amt, Summary, PayPWD, OriPlatSerial}) {
   const rqParams = {
     FunCode: 65225,
     OrderID,
@@ -35,14 +35,14 @@ export const getpaymentmanage = function({AuditStatus, StoreSerial, OrderID, Sta
     Province,
     AccountProp,
     City,
-    Tel:WithdrawTel,
+    Tel: WithdrawTel,
     BranchBankName,
     CardType,
     SubBranchBankName,
     CardNum,
     SubBranchBankID,
     AvailableBalance,
-    Amt:Number(Amt),
+    Amt: Number(Amt),
     Summary,
     PayPWD,
     OriPlatSerial
@@ -50,7 +50,7 @@ export const getpaymentmanage = function({AuditStatus, StoreSerial, OrderID, Sta
   return reqWrap(rqParams)
 }
 
-export const auditpayment = function ({PlatSerial, Remark, PayAuditPwd, OriPlatSerial,AuditStatus }) {
+export const auditpayment = function ({PlatSerial, Remark, PayAuditPwd, OriPlatSerial, AuditStatus }) {
   const rqParams = {
     FunCode: 65161,
     PlatSerial,

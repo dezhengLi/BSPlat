@@ -9,7 +9,7 @@ export const getsignInoutmanage = function({CusBankID}) {
     return reqWrap(rqParams)
 }
 
-export const altersignInout = function({CusBankID,IsAuto,AutoSignInStartTime,AutoSignOutStartTime,TradeDate,NextTradeDate}) {
+export const altersignInout = function({CusBankID, IsAuto, AutoSignInStartTime, AutoSignOutStartTime, TradeDate, NextTradeDate}) {
     const rqParams = {
         FunCode: 65105,
         CusBankID,

@@ -11,7 +11,7 @@
   import requestMixin from 'common/mixins/requestMixin'
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
-  import {getsubmerchantInfo,addSubMerchant,modifySubMerchant,activeSubMerchant,DeleteSubMerchant} from 'api/submerchant-manage'
+  import {getsubmerchantInfo, addSubMerchant, modifySubMerchant, activeSubMerchant, DeleteSubMerchant} from 'api/submerchant-manage'
 
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
@@ -38,15 +38,14 @@
       }]
     },
     methods: {
-        add(){
-                const addFiled =['SubMerchantID', 'SubMerchantName','SubMerchantType','CusBankID']
+        add() {
+                const addFiled = ['SubMerchantID', 'SubMerchantName', 'SubMerchantType', 'CusBankID']
                 this.$commonPopup({
             titleField: addFiled,
             submitFc: (params, p) => {
                 this.popupHttpFc(params, p, addSubMerchant)
-                
             }
-            
+
             })
         },
         modify() {
@@ -84,15 +83,15 @@
 
             this.setGlobalLoading(false)
             this._$queryMessage({ code, msg })
-            //重新刷新页面
-             this.getQueryData({CusBankID:-1})
+            // 重新刷新页面
+             this.getQueryData({CusBankID: -1})
             })
             .catch(() => {})
     },
-    
+
       _initData() {
         this.queryTitle = ['CusBankID']
-        this.tableTitle = ['CusBankID', 'CusBankName', 'SubMerchantID', 'SubMerchantName', 'SubMerchantType','IsInvalid']
+        this.tableTitle = ['CusBankID', 'CusBankName', 'SubMerchantID', 'SubMerchantName', 'SubMerchantType', 'IsInvalid']
       }
     }
   }

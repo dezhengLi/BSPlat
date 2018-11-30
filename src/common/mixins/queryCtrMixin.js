@@ -53,7 +53,6 @@ export default {
         : 'text'
     },
     _renderInputCtr (queryTitle, queryData, pickerOptions, isAll) {
-      
       console.log(this)
       const {_inputType, _textType, getValue, fieldConfig} = this
       return queryTitle.map((key) => {
@@ -85,20 +84,18 @@ export default {
           ? val
           : val !== '--请选择--'
             ? val
-            : optionsKey[0] 
+            : optionsKey[0]
           val = !isNaN(val) ? val.toString() : val
           result = (
            <div>
-            
+
               {isAll
-                ? 
-                <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val}>
+                ? <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val}>
                 <el-option key="" label="全部" value="" />
                 {optionsKey.map(k => (
-                  <el-option key={k} label={options[k]} value={k} /> ))}
-                  </el-select> 
-                :                 
-                 <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val} placeholder="请选择">
+                  <el-option key={k} label={options[k]} value={k} />))}
+                  </el-select>
+                : <el-select v-model={val} onChange={($event) => this._changeVal($event, key)} value={val} placeholder="请选择">
                 <el-option key="" label="--请选择--" value="" />
                 {optionsKey.map(k => (
                   <el-option key={k} label={options[k]} value={k} />

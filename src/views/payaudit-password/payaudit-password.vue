@@ -1,42 +1,38 @@
 <template>
   <div class="roleManage-container">
       <div class="password-box">
-          <Updatepass @Updatepass="Updatapass"></Updatepass> 
+          <Updatepass @Updatepass="Updatapass"></Updatepass>
       </div>
   </div>
 </template>
 <script>
   import requestMixin from 'common/mixins/requestMixin'
   import Updatepass from './subpayaudit-password'
-  import {UPauditPassWD,getKey} from  'api/payaudit-password.js'
+  import {UPauditPassWD, getKey} from 'api/payaudit-password.js'
 
   import {strEnc} from '../../common/config/crypto.config.js'
   let Base64 = require('js-base64').Base64
   export default {
       mixins: [requestMixin],
      components: { Updatepass },
-    
+
     methods: {
 
-      Updatapass(info){
-
+      Updatapass(info) {
             getKey().then((res) => {
             this.getkey = Base64.decode(res.data.DesKey)
             this.OriPlatSerial = res.data.PlatSerial
-            info.checkPass=strEnc(info.checkPass, this.getkey)
-            info.pass=strEnc(info.pass, this.getkey)
-            info.oldpass=strEnc(info.oldpass, this.getkey)
-            
-            info=Object.assign({}, info, {OriPlatSerial: this.OriPlatSerial })
+            info.checkPass = strEnc(info.checkPass, this.getkey)
+            info.pass = strEnc(info.pass, this.getkey)
+            info.oldpass = strEnc(info.oldpass, this.getkey)
 
-         
-           }).then(async()=>{
+            info = Object.assign({}, info, {OriPlatSerial: this.OriPlatSerial })
+           }).then(async() => {
                          const {code, msg} = await UPauditPassWD(info)
-                         this._$queryMessage({code, msg})  
+                         this._$queryMessage({code, msg})
            }
 
            )
- 
         }
     }
 }
@@ -53,8 +49,5 @@
           margin-top:100px;
       }
   }
-  
-
 
 </style>
-

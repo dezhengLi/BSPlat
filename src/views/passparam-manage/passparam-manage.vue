@@ -11,7 +11,7 @@
   import requestMixin from 'common/mixins/requestMixin'
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
-  import {getpassparammanage,alterPassparam} from 'api/passparam-manage'
+  import {getpassparammanage, alterPassparam} from 'api/passparam-manage'
 
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
@@ -30,17 +30,17 @@
       }]
     },
     methods: {
-      // 修改  
+      // 修改
       alter() {
-          const modifyFiled = [{title:"渠道信息",
-              info:['CusBankID','CusBankName']
-          }, {title:"收款设置",
-              info:['IsAllowIn', 'InControlFlag','LessInAmount', 'MaxInAmount', 'MaxTotalInAmount','InMoneyFee']
-          }, {title:"付款设置",
-              info:['IsAllowOut', 'OutControlFlag','LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount','OutMoneyFee','OutStartTime','OutEndTime']
-          },{title:"其他设置",
-              info:['WithdrawFee', 'RechargeFee','MaxWithdrawAmount','StartCheckTime','StartSettleTime','StartClearTime','CurrentTradeDate','NextTradeDate']
-              //CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
+          const modifyFiled = [{title: '渠道信息',
+              info: ['CusBankID', 'CusBankName']
+          }, {title: '收款设置',
+              info: ['IsAllowIn', 'InControlFlag', 'LessInAmount', 'MaxInAmount', 'MaxTotalInAmount', 'InMoneyFee']
+          }, {title: '付款设置',
+              info: ['IsAllowOut', 'OutControlFlag', 'LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount', 'OutMoneyFee', 'OutStartTime', 'OutEndTime']
+          }, {title: '其他设置',
+              info: ['WithdrawFee', 'RechargeFee', 'MaxWithdrawAmount', 'StartCheckTime', 'StartSettleTime', 'StartClearTime', 'CurrentTradeDate', 'NextTradeDate']
+              // CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
           }]
 
         this.$commonPopup({
@@ -60,20 +60,19 @@
             this.popupHttpFc(params, p, alterPassparam)
           }
         })
-
       },
       _initData() {
         this.queryTitle = ['CusBankID']
-        this.tableTitle = ['CusBankID', 'CusBankName', 'IsAllowIn', 'InControlFlag', 'LessInAmount', 'MaxInAmount', 'MaxTotalInAmount', 'IsAllowOut','OutControlFlag','LessOutAmount','MaxOutAmount','MaxTotalOutAmount','MaxWithdrawAmount']
-        this.detailFieldName = [{title:"渠道信息",
-              info:['CusBankID','CusBankName']
-          }, {title:"收款设置",
-              info:['IsAllowIn', 'InControlFlag','LessInAmount', 'MaxInAmount', 'MaxTotalInAmount','InMoneyFee']
-          }, {title:"付款设置",
-              info:['IsAllowOut', 'OutControlFlag','LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount','OutMoneyFee','OutStartTime','OutEndTime']
-          },{title:"其他设置",
-              info:['WithdrawFee', 'RechargeFee','MaxWithdrawAmount','StartCheckTime','StartSettleTime','StartClearTime','CurrentTradeDate','NextTradeDate','CreateTime','UpdateTime']
-              //CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
+        this.tableTitle = ['CusBankID', 'CusBankName', 'IsAllowIn', 'InControlFlag', 'LessInAmount', 'MaxInAmount', 'MaxTotalInAmount', 'IsAllowOut', 'OutControlFlag', 'LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount', 'MaxWithdrawAmount']
+        this.detailFieldName = [{title: '渠道信息',
+              info: ['CusBankID', 'CusBankName']
+          }, {title: '收款设置',
+              info: ['IsAllowIn', 'InControlFlag', 'LessInAmount', 'MaxInAmount', 'MaxTotalInAmount', 'InMoneyFee']
+          }, {title: '付款设置',
+              info: ['IsAllowOut', 'OutControlFlag', 'LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount', 'OutMoneyFee', 'OutStartTime', 'OutEndTime']
+          }, {title: '其他设置',
+              info: ['WithdrawFee', 'RechargeFee', 'MaxWithdrawAmount', 'StartCheckTime', 'StartSettleTime', 'StartClearTime', 'CurrentTradeDate', 'NextTradeDate', 'CreateTime', 'UpdateTime']
+              // CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
           }]
       }
     }

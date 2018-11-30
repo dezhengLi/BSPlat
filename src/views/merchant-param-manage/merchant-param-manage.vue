@@ -11,7 +11,7 @@
   import requestMixin from 'common/mixins/requestMixin'
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
-  import {getParamManage,alterParamManage} from 'api/merchant-param-manage'
+  import {getParamManage, alterParamManage} from 'api/merchant-param-manage'
 
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
@@ -30,21 +30,21 @@
       }]
     },
     methods: {
-      // 修改  
+      // 修改
       alter() {
           // const modifyFiled = ['MerchantID', 'PayType','StoreSerial', 'StoreName', 'BigMerchantID']
-          const modifyFiled=[
-            {title:"商户信息",
-              info:['StoreSerial', 'BigMerchantID']
-          }, {title:"收款设置",
-              info:['IsAllowIn', 'InControlFlag','LessInAmount', 'MaxInAmount', 'MaxTotalInAmount']
-          }, {title:"付款设置",
-              info:['IsAllowOut', 'OutControlFlag','LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount','FrozenAmount','OutStartTime','OutEndTime','IsPaymentAudit']
-          }, {title:"银行账户信息",
-              info:['WithdrawAccountNo', 'WithdrawAccountName','WithdrawBankID','WithdrawBranchBankName','WithdrawSubBranchBankName','WithdrawSubBranchBankID','Province','City','WithdrawAccProp','WithdrawAccType','WithdrawTel','WithdrawAccCardNum','WithdrawAccCardType']
-          },{title:"其他",
-              info:['WithdrawFee', 'RechargeFee','MaxWithdrawAmount','CurrentTradeDate','NotifyUrl','NextTradeDate','ReturnUrl']
-              //CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
+          const modifyFiled = [
+            {title: '商户信息',
+              info: ['StoreSerial', 'BigMerchantID']
+          }, {title: '收款设置',
+              info: ['IsAllowIn', 'InControlFlag', 'LessInAmount', 'MaxInAmount', 'MaxTotalInAmount']
+          }, {title: '付款设置',
+              info: ['IsAllowOut', 'OutControlFlag', 'LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount', 'FrozenAmount', 'OutStartTime', 'OutEndTime', 'IsPaymentAudit']
+          }, {title: '银行账户信息',
+              info: ['WithdrawAccountNo', 'WithdrawAccountName', 'WithdrawBankID', 'WithdrawBranchBankName', 'WithdrawSubBranchBankName', 'WithdrawSubBranchBankID', 'Province', 'City', 'WithdrawAccProp', 'WithdrawAccType', 'WithdrawTel', 'WithdrawAccCardNum', 'WithdrawAccCardType']
+          }, {title: '其他',
+              info: ['WithdrawFee', 'RechargeFee', 'MaxWithdrawAmount', 'CurrentTradeDate', 'NotifyUrl', 'NextTradeDate', 'ReturnUrl']
+              // CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
           }]
         this.$commonPopup({
           titleField: modifyFiled,
@@ -69,23 +69,22 @@
             this.popupHttpFc(params, p, alterParamManage)
           }
         })
-
       },
 
       _initData() {
         this.queryTitle = ['StoreSerial']
         this.tableTitle = ['StoreSerial', 'StoreName', 'BigMerchantID', 'BigMerchantName', 'IsAllowIn', 'InControlFlag', 'LessInAmount', 'MaxInAmount', 'MaxTotalInAmount', 'IsAllowOut', 'OutControlFlag', 'LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount']
-        this.detailFieldName = [ {title:"商户信息",
-              info:['StoreSerial','StoreName', 'BigMerchantID','BigMerchantName']
-          }, {title:"收款设置",
-              info:['IsAllowIn', 'InControlFlag','LessInAmount', 'MaxInAmount', 'MaxTotalInAmount']
-          }, {title:"付款设置",
-              info:['IsAllowOut', 'OutControlFlag','LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount','FrozenAmount','OutStartTime','OutEndTime','OutMoneyThreshold','IsPaymentAudit']
-          }, {title:"银行账户信息",
-              info:['WithdrawAccountNo', 'WithdrawAccountName','WithdrawBankID','WithdrawBranchBankName','WithdrawSubBranchBankName','WithdrawSubBranchBankID','Province','City','WithdrawAccProp','WithdrawAccType','WithdrawTel','WithdrawAccCardNum','WithdrawAccCardType']
-          },{title:"其他",
-              info:['WithdrawFee', 'RechargeFee','MaxWithdrawAmount','OperatorID','CurrentTradeDate','NextTradeDate','CreateTime','UpdateTime','NotifyUrl','ReturnUrl']
-              //CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
+        this.detailFieldName = [ {title: '商户信息',
+              info: ['StoreSerial', 'StoreName', 'BigMerchantID', 'BigMerchantName']
+          }, {title: '收款设置',
+              info: ['IsAllowIn', 'InControlFlag', 'LessInAmount', 'MaxInAmount', 'MaxTotalInAmount']
+          }, {title: '付款设置',
+              info: ['IsAllowOut', 'OutControlFlag', 'LessOutAmount', 'MaxOutAmount', 'MaxTotalOutAmount', 'FrozenAmount', 'OutStartTime', 'OutEndTime', 'OutMoneyThreshold', 'IsPaymentAudit']
+          }, {title: '银行账户信息',
+              info: ['WithdrawAccountNo', 'WithdrawAccountName', 'WithdrawBankID', 'WithdrawBranchBankName', 'WithdrawSubBranchBankName', 'WithdrawSubBranchBankID', 'Province', 'City', 'WithdrawAccProp', 'WithdrawAccType', 'WithdrawTel', 'WithdrawAccCardNum', 'WithdrawAccCardType']
+          }, {title: '其他',
+              info: ['WithdrawFee', 'RechargeFee', 'MaxWithdrawAmount', 'OperatorID', 'CurrentTradeDate', 'NextTradeDate', 'CreateTime', 'UpdateTime', 'NotifyUrl', 'ReturnUrl']
+              // CurrentTradeDate当前工作日  文档使用TradeDate,所以显示不出时间,后期根据统一再做修改
           }]
       }
     }

@@ -45,7 +45,7 @@
           })
         ), {}))
         console.log(this.queryData)
-        //给表格的参数内容
+        // 给表格的参数内容
         this.$emit('exportQuery', this.queryData)
       },
       // 时间
@@ -68,16 +68,14 @@
       },
       _changeVal (val, key) {
         this.queryData[key] = val
-        
       }
     },
     render () {
-
       const { pr, queryTitle, queryData, pickerOptions } = this
       return (
         <div class="c-tablequery--container">
           <el-form style={{ paddingRight: pr }} label-width="120px" class="form-box">
-            {this._renderInputCtr(queryTitle, queryData, pickerOptions,true)}
+            {this._renderInputCtr(queryTitle, queryData, pickerOptions, true)}
             <el-form-item label-width="50px">
               <el-button onClick={this.emitQuery}>查询</el-button>
             </el-form-item>

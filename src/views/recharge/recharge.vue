@@ -1,10 +1,9 @@
 
-
 <script>
 export default {
-    data:function(){
-        return{
-            isChangeCls:true
+    data: function() {
+        return {
+            isChangeCls: true
         }
     },
 //       created () {
@@ -20,7 +19,7 @@ export default {
 //     }
 
     render () {
-        return(
+        return (
         <el-dialog
           visible={this.isShowPopup}
           width='550px'
@@ -32,11 +31,11 @@ export default {
             label-suffix="："
             inline
           >
-            
+
               <el-form-item label="活动名称" label-width="formLabelWidth">
                     <el-input v-model="form.name" auto-complete="on"></el-input>
               </el-form-item>
-                
+
           </el-form>
           <div slot="footer">
 

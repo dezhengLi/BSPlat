@@ -79,7 +79,7 @@
         }
         console.log(activeData)
         console.log(this.resolve)
-        this.resolve(activeData)        
+        this.resolve(activeData)
         this.isShowPopup = false
       },
       close () {

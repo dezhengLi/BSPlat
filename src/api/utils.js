@@ -3,7 +3,6 @@ import { fileterObj } from 'common/js/utils'
 import { ERR_CALLBACK, ERR_OK } from 'common/config/api.config'
 import store from 'src/store'
 
-
 export const reqWrap = function (params) {
   const rqParams = Object.assign({}, {
     LoginCode: store.getters.username
@@ -39,7 +38,6 @@ export const isOK = function (code) {
   return code === ERR_OK
 }
 
-
  // 密钥请求
  export const getKey = function () {
   const rqParams = {
@@ -47,5 +45,3 @@ export const isOK = function (code) {
   }
   return reqWrap(rqParams)
 }
-
-

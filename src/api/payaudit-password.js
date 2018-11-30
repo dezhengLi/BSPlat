@@ -1,12 +1,12 @@
 import { reqWrap } from './utils'
 
-export const UPauditPassWD = function({pass,checkPass,oldpass,OriPlatSerial}) {
+export const UPauditPassWD = function({pass, checkPass, oldpass, OriPlatSerial}) {
     const rqParams = {
       FunCode: 65167,
       OriPlatSerial,
-      OldPassword:oldpass,
-      NewPassword:pass,
-      ConfirmPwd:checkPass
+      OldPassword: oldpass,
+      NewPassword: pass,
+      ConfirmPwd: checkPass
     }
     return reqWrap(rqParams)
   }
