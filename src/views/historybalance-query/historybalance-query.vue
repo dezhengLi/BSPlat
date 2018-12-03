@@ -15,7 +15,7 @@
   import {gethistorybalance, subhistorybalance} from 'api/historybalance-query'
   import exportExcel from 'common/js/export.js'
   import { ERR_OK } from '../../common/config/api.config'
-
+  import { TST_OPTIONS } from '../../common/config/constants'
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
        data: function() {
@@ -85,6 +85,10 @@
                                       }
                                   }
                               }
+                          //处理表格类型转换的问题      
+                         for(var i=0;i<this.sumData.length;i++){
+                             this.sumData[i].MerchantType=TST_OPTIONS.MerchantType[this.sumData[i].MerchantType]                     
+                         }
                       exportExcel({filename, infosData: this.sumData, labelTitle})
                       this.sumData = []
                 } else {

@@ -14,7 +14,7 @@
   import {getreconcileAdjust, reconcileAdjust,subreconcileAdjust} from 'api/reconcile-adjust'
   import exportExcel from 'common/js/export.js'
   import { ERR_OK } from '../../common/config/api.config'
-
+  import { TST_OPTIONS } from '../../common/config/constants'
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
     data: function() {
@@ -83,6 +83,20 @@
                                       }
                                   }
                               }
+                          //处理表格类型转换的问题      
+                         for(var i=0;i<this.sumData.length;i++){
+                             this.sumData[i].OrderID="'"+this.sumData[i].OrderID
+                             this.sumData[i].PlatSerial="'"+this.sumData[i].PlatSerial
+                             this.sumData[i].BankSerial="'"+this.sumData[i].BankSerial 
+                             this.sumData[i].PlatOrderID="'"+this.sumData[i].PlatOrderID 
+                             this.sumData[i].PayType=TST_OPTIONS.PayType[this.sumData[i].PayType]
+                             this.sumData[i].ExecuteType=TST_OPTIONS.ExecuteType[this.sumData[i].ExecuteType]  
+                             this.sumData[i].BankAmount="'"+this.sumData[i].BankAmount 
+                             this.sumData[i].PlatAmount="'"+this.sumData[i].PlatAmount 
+                             this.sumData[i].ErrType=TST_OPTIONS.ErrType[this.sumData[i].ErrType]
+                             this.sumData[i].AdjustStatus=TST_OPTIONS.AdjustStatus[this.sumData[i].AdjustStatus]  
+                             this.sumData[i].CurrCode=TST_OPTIONS.CurrCode[this.sumData[i].CurrCode]               
+                         }
                       exportExcel({filename, infosData: this.sumData, labelTitle})
                       this.sumData = []
                 } else {
@@ -96,7 +110,7 @@
         // table-content 的显示
         this.tableTitle = ['OrderID', 'PlatSerial', 'BankSerial', 'PlatOrderID', 'MerchantID', 'CusBankName', 'PayType', 'ExecuteType', 'BankAmount', 'PlatAmount', 'ErrType', 'AdjustStatus', 'CurrCode', 'TradeDate']
         // 详情的输入框
-        this.detailFieldName = ['OrderID', 'PlatSerial', 'ThirdSerial', 'PlatOrderID', 'MerchantID', 'CusBankID', 'CusBankName', 'PayType', 'ExecuteType', 'BankAmount', 'PlatAmount', 'ErrType', 'AdjustStatus', 'CurrCode', 'TradeDate']
+        this.detailFieldName = ['OrderID', 'PlatSerial', 'BankSerial', 'PlatOrderID', 'MerchantID', 'CusBankID', 'CusBankName', 'PayType', 'ExecuteType', 'BankAmount', 'PlatAmount', 'ErrType', 'AdjustStatus', 'CurrCode', 'TradeDate']
       }
     }
   }

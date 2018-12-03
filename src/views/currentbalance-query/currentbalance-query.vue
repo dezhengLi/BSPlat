@@ -15,6 +15,7 @@
   import {getcurrentbalance, getsubcurrentbalance } from 'api/currentbalance-query'
   import exportExcel from 'common/js/export.js'
   import { ERR_OK } from '../../common/config/api.config'
+  import { TST_OPTIONS } from '../../common/config/constants'
 
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
@@ -50,17 +51,17 @@
             //       CommissionInCome: '手续费收益',UpdateTime: '更新时间'}
             // 表格头部信息
             let labelTitle = {MerchantID: '商户编号',
-MerchantName: '商户名称',
-MerchantType: '商户类型',
-Balance: '期初余额',
-InAmount: '支付入账金额',
+                              MerchantName: '商户名称',
+                              MerchantType: '商户类型',
+                              Balance: '期初余额',
+                              InAmount: '支付入账金额',
                               RechargeAmount: '充值入账金额',
-OutAmount: '代付出账金额',
-WithdrawAmount: '提现出账金额',
-CurrentBalance: '期末余额',
+                              OutAmount: '代付出账金额',
+                              WithdrawAmount: '提现出账金额',
+                              CurrentBalance: '期末余额',
                               AvailableBalance: '可用余额',
-CommissionInCome: '手续费收益',
-UpdateTime: '更新时间'}
+                              CommissionInCome: '手续费收益',
+                              UpdateTime: '更新时间'}
             // 表格名
             let D = new Date()
             const filename = D.getFullYear() + '' + (D.getMonth() + 1) + D.getDate() + D.getHours() + D.getMinutes() + D.getSeconds()
@@ -89,6 +90,10 @@ UpdateTime: '更新时间'}
                                           }
                                     }
                                 }
+                          //处理表格类型转换的问题      
+                         for(var i=0;i<this.sumData.length;i++){
+                             this.sumData[i].MerchantType=TST_OPTIONS.MerchantType[this.sumData[i].MerchantType]                     
+                         }
                         exportExcel({filename, infosData: this.sumData, labelTitle})
                         this.sumData = []
              } else {

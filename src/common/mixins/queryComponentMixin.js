@@ -17,7 +17,8 @@ export default {
       tableData: {
         count: 0,
         requestData: [],
-        otherData: []
+        otherData: [],
+        objData:{}
       },
       activeData: null
     }
@@ -53,7 +54,13 @@ export default {
         this.historyQuery = params
         if (this.FunKey.length == 2) {
           this.tableData.requestData = data[this.FunKey[0]]
-          this.tableData.otherData = data[this.FunKey[1]]
+          // this.tableData.otherData = data[this.FunKey[1]]
+           if(data[this.FunKey[1]].constructor===Array){
+            this.tableData.otherData = data[this.FunKey[1]]
+           }else{
+            this.tableData.objData = data[this.FunKey[1]]
+           }
+
           this.tableData.count = data['RowCount'] || data[this.FunKey[0]].length
         } else {
           this.tableData.requestData = data[this.FunKey]
