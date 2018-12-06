@@ -10,6 +10,7 @@
         </div>
 </template>
 <script>
+import {TST_OPTIONS} from "common/config/constants.js"
 export default {
     props: {
     Merchantdata: {
@@ -87,6 +88,9 @@ export default {
     Merchantdata (newData) {
       this.info.forEach((item) => {
         item.val = newData[item.name] || ''
+        if(item.name=='MerchantType'){
+             item.val=TST_OPTIONS[item.name][newData[item.name]]
+        }
       })
     }
   }

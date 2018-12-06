@@ -36,6 +36,7 @@
       },
       // 请求的数据
       _initQueryData () {
+        console.log(this.initData)
         let propertyInitData = Object.assign({}, INPUT_INITDATA, this.initData)
         console.log(propertyInitData)
         // c代表queryTitle

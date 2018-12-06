@@ -54,9 +54,6 @@
                                            MerchantID: this.$store.state.user})
                                                        // 加密
            params.PayPWD = strEnc(params.PayPWD, this.getkey)
-           console.log(typeof (params.Amt))
-            console.log(params)
-            console.log(p)
             this.popupHttpFc(params, p, addpayment)
           }
         })

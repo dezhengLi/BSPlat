@@ -121,7 +121,10 @@
     methods: {
       // 点击内容 row点击的那一个div，path是一个冒泡事件
       rowClick (row, event) {
+        console.log(event)
         const path = event.path
+        console.log(path)
+        console.log(row)
         for (let i = 0, l = path.length; i < l; i++) {
           if (path[i].nodeName === 'TR') {
             this._toggleActiveCls(path[i], row)

@@ -1,10 +1,10 @@
 import { reqWrap } from './utils'
 import { ParseTime } from 'common/js/utils'
 
-export const getWithdrawManage = function({BigMerchantID, StoreSerial, OrderID, StartTime, EndTime}) {
+export const getWithdrawManage = function({MerchantID, StoreSerial, OrderID, StartTime, EndTime}) {
   const rqParams = {
     FunCode: 65079,
-    BigMerchantID,
+    BigMerchantID:MerchantID,
     StoreSerial,
     OrderID,
     StartTime: new ParseTime(StartTime).formatTime,
@@ -13,12 +13,13 @@ export const getWithdrawManage = function({BigMerchantID, StoreSerial, OrderID, 
   return reqWrap(rqParams)
 }
 
-export const addWithdraw = function ({BigMerchantID, StoreSerial, WithdrawalAmount, Remark, PayPWD, OrderID }) {
+export const addWithdraw = function ({MerchantID, StoreSerial, WithdrawalAmount, Remark, PayPWD, OrderID,OriPlatSerial }) {
   const rqParams = {
     FunCode: 65075,
-    BigMerchantID,
+    BigMerchantID:MerchantID,
     StoreSerial,
     Amt: WithdrawalAmount,
+    OriPlatSerial,
     Remark,
     PayPWD,
     OrderID

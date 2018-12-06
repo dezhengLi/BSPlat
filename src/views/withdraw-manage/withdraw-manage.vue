@@ -12,7 +12,9 @@
   import queryComponentMixin from 'common/mixins/queryComponentMixin'
   import commonPanelMixin from 'common/mixins/common-panel-method.js'
   import {getWithdrawManage, addWithdraw, auditWithdraw} from 'api/withdraw-manage'
-
+  import {getKey} from 'api/utils.js'
+  import {strEnc} from '../../common/config/crypto.config.js'
+  let Base64 = require('js-base64').Base64
   export default {
     mixins: [requestMixin, queryComponentMixin, commonPanelMixin],
     created() {
@@ -36,19 +38,23 @@
     methods: {
       // 新增
       add() {
-        const addFiled = [{title: '', info: ['BigMerchantID', 'StoreSerial']},
-                         {title: '资金信息', info: ['CurrentBalances', 'UnsettledAmount', 'OutMoneyThreshold', 'FrozenAmount', 'TransitAmount', 'AvailableBalance']},
+        const addFiled = [{title: '', info: ['MerchantID', 'StoreSerial']},
+                         {title: '资金信息', info: ['CurrentBalance', 'UnsettledAmount', 'OutmoneyThreShold', 'FrozenAmount', 'TransitAmount', 'AvailableBalance']},
                          {title: '结算账户信息', info: ['WithdrawAccountNo', 'WithdrawAccountName', 'WithdrawBankID', 'WithdrawSubBranchBankName', 'WithdrawSubBranchBankID']},
                          {title: '', info: ['WithdrawalAmount', 'PayPWD', 'Remark']}]
-        // 全局引入$commonPopup
+
+               getKey().then((res) => {
+                  this.getkey = Base64.decode(res.data.DesKey)
+                  this.OriPlatSerial = res.data.PlatSerial
+                })           
+        
         this.$addPopup({
           titleField: addFiled,
-          renderData: this.activeData,
           // submitFc是公共弹框里设置的一个属性函数,
           submitFc: (params, p) => {
-            console.log(params)
-            console.log(p)
-            this.popupHttpFc(params, p, addWithdraw)
+                params = Object.assign({}, params, {OriPlatSerial: this.OriPlatSerial,OrderID: this.$store.state.user + new Date().getTime()})
+                params.PayPWD=strEnc(params.PayPWD, this.getkey)
+                this.popupHttpFc(params, p, addWithdraw)
           }
         })
       },
@@ -67,7 +73,7 @@
     },
       _initData() {
         // table-query的输入框
-        this.queryTitle = ['BigMerchantID', 'StoreSerial', 'StartTime', 'EndTime', 'OrderID']
+        this.queryTitle = ['MerchantID', 'StoreSerial', 'StartTime', 'EndTime', 'OrderID']
         // table-content 的显示
         this.tableTitle = ['ApplicationDate', 'OrderID', 'PlatSerial', 'Amount', 'StoreSerial', 'StoreName', 'BankAccountNo', 'BankAccountName', 'ApplicationCode', 'AuditStatus', 'ExecuteType']
         // 详情的输入框

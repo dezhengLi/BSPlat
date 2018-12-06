@@ -134,6 +134,11 @@ export default new Router({
         component: () => import('views/recharge/recharge'),
         privilege: privilegeOr([types.MerchantRecharge_Add])
 
+      },{
+        path: encodeURIComponent('/提现'),
+        component: () => import('views/withdrawal/withdrawal'),
+        privilege: privilegeOr([types.MerchantWithdraw_Add])
+
       }, {
         path: encodeURIComponent('/汇总数据查询'),
         component: () => import('views/collectdata-query/collectdata-query'),

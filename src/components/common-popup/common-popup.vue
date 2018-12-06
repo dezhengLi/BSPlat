@@ -105,16 +105,19 @@
         //   })
         // }, {})
         let newRenderData = {}
-          if (this.titleField.title) {
-               newRenderData = this.titleField.info.reduce((r, k) => {
-                // 防止空白占位符
-                if (k === '') {
-                  return r
-                }
-                return Object.assign({}, r, {
-                  [k]: ''
-                })
-              }, {})
+          if (typeof this.titleField[0] === 'object' || typeof this.titleField[0] === 'number') {
+              for(let i=0;i<this.titleField.length;i++){
+                        const newData = this.titleField[i].info.reduce((r, k) => {
+                        // 防止空白占位符
+                        if (k === '') {
+                          return r
+                        }
+                        return Object.assign({}, r, {
+                          [k]: ''
+                        })
+                      }, {})
+                 newRenderData=Object.assign({},newData,newRenderData)
+              }
           } else {
                newRenderData = this.titleField.reduce((r, k) => {
                 // 防止空白占位符
@@ -126,13 +129,10 @@
                 })
               }, {})
           }
-
         this.renderData = Object.assign({}, newRenderData, this.renderData)
       },
       //
        _initPickerOptions () {
-         console.log(this.renderData)
-         console.log(this.titleField)
         let queryArr = this.titleField
           .filter(key => key.match(/date|time/i))
           .sort()
